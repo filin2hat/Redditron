@@ -1,0 +1,60 @@
+<resources>
+    <string name="app_name" translatable="false">Humblr</string>
+    <string name="title_home">Subreddits</string>
+    <string name="title_favourites">Favourites</string>
+    <string name="title_profile">Profile</string>
+    <string name="auth_under_logo">Find like-minded people with Humblr</string>
+    <string-array name="onboarding_texts_array1">
+    <item>Welcome to Humblr</item>
+    <item>SubHumblr</item>
+    <item>Sare and save</item>
+    </string-array>
+    <string-array name="onboarding_texts_array2">
+        <item>Communities of all kinds of interests are gathered here</item>
+        <item>You can find new subs by interests and see the subs you are subscribed to</item>
+        <item>The favorites tab stores bookmarks with comments and subs. You will find information about yourself in the profile</item>
+    </string-array>
+    <string name="logout_title">Are you sure you want to logout?</string>
+    <string name="logout_message">All local data will be deleted.</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="ok">OK</string>
+    <string name="no_connection">Check the network connection</string>
+    <string name="login_via_reddit">Login</string>
+    <string name="skip">Skip</string>
+    <string name="ready">Ready</string>
+    <string name="successful_authorization">Successful login</string>
+    <string name="list_of_friends">List of Friends</string>
+    <string name="clear_saved">Clear Saved</string>
+    <string name="logout">Logout</string>
+    <string name="karma">Karma: %1$d</string>
+    <string name="user_id">Id: %1$s</string>
+    <string name="followers">Followers: %1$s</string>
+    <string name="search">Search</string>
+    <string name="posts">Posts</string>
+    <string name="subreddits">Subreddits</string>
+    <string name="popular">Popular</string>
+    <string name="newest">New</string>
+    <string name="subscribed">Subscribed on subreddit</string>
+    <string name="unsubscribed">Unsubscribed from subreddit</string>
+    <string name="no_function">Humblr doesn\'t provide search functionality yet</string>
+    <string name="author">Author: u/%1$s</string>
+    <string name="share_url" translatable="false">https://www.reddit.com%1$s</string>
+    <string name="share">Share</string>
+    <string name="subscribers">Subscribers: %1$d</string>
+    <string name="share_text" translatable="false">text/plain</string>
+    <string name="download">Download</string>Downloaded
+    <string name="likesK" translatable="false">%1$sK</string>
+    <string name="likesM" translatable="false">%1$sM</string>
+    <string name="downloaded">Downloaded</string>
+    <string name="already_downloaded">Already downloaded</string>
+    <string name="save">Save</string>
+    <string name="saved">Saved</string>
+    <string name="unsaved">Unsaved</string>
+    <string name="make_friends">Make Friends</string>
+    <string name="saved_or_all">Saved</string>
+    <string name="all">All</string>
+    <string name="friends_now">User\'s added to your friends list</string>
+    <string name="snack_unsaved">All previously saved posts have been unsaved</string>
+    <string name="you_have_no_saved_posts">You have no saved posts. \n Information is unavailable or deleted.</string>
+</resources>

@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/mainFragment">
+
+    <fragment
+        android:id="@+id/navigation_onboarding"
+        android:name="com.mivanovskaya.humblr.presentation.onboarding.OnboardingFragment"
+        tools:layout="@layout/fragment_onboarding">
+        <action
+            android:id="@+id/action_navigation_onboarding_to_navigation_auth"
+            app:destination="@id/navigation_auth"
+            app:popUpTo="@id/mainFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_auth"
+        android:name="com.mivanovskaya.humblr.presentation.authorization.AuthFragment"
+        tools:layout="@layout/fragment_auth">
+        <deepLink
+            android:id="@+id/deepLink"
+            app:uri="http://humblrmi/redirect?state=my_state&amp;code={code}" />
+        <argument
+            android:name="code"
+            android:defaultValue=""
+            app:argType="string" />
+        <action
+            android:id="@+id/action_navigation_auth_to_navigation_home"
+            app:destination="@id/navigation_home"
+            app:popUpTo="@id/mainFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_home"
+        android:name="com.mivanovskaya.humblr.presentation.home.HomeFragment"
+        android:label="@string/title_home"
+        tools:layout="@layout/fragment_home">
+        <action
+            android:id="@+id/action_navigation_home_to_navigation_single_subreddit_fragment"
+            app:destination="@id/navigation_single_subreddit_fragment"
+            app:popUpTo="@id/navigation_home" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_favourites"
+        android:name="com.mivanovskaya.humblr.presentation.favourites.FavouritesFragment"
+        android:label="@string/title_favourites"
+        tools:layout="@layout/fragment_favourites" >
+        <action
+            android:id="@+id/action_navigation_favourites_to_navigation_user"
+            app:destination="@id/navigation_user"
+            app:launchSingleTop="true"
+            app:popUpTo="@id/navigation_user"/>
+        <action
+            android:id="@+id/action_navigation_favourites_to_navigation_single_subreddit_fragment"
+            app:destination="@id/navigation_single_subreddit_fragment"
+            app:popUpTo="@id/navigation_favourites"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_profile"
+        android:name="com.mivanovskaya.humblr.presentation.profile.ProfileFragment"
+        android:label="@string/title_profile"
+        tools:layout="@layout/fragment_profile">
+        <action
+            android:id="@+id/action_navigation_profile_to_navigation_friends"
+            app:destination="@id/navigation_friends"
+            app:popUpTo="@id/navigation_profile" />
+        <action
+            android:id="@+id/action_navigation_profile_to_navigation_auth"
+            app:destination="@id/navigation_auth"
+            app:popUpTo="@id/navigation_home"
+            app:popUpToInclusive="true" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_friends"
+        android:name="com.mivanovskaya.humblr.presentation.profile.FriendsFragment"
+        tools:layout="@layout/fragment_friends">
+        <action
+            android:id="@+id/action_navigation_friends_to_navigation_profile"
+            app:destination="@id/navigation_profile"
+            app:launchSingleTop="true"
+            app:popUpTo="@id/navigation_profile" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/mainFragment"
+        android:name="com.mivanovskaya.humblr.presentation.MainFragment"
+        android:label="fragment_main"
+        tools:layout="@layout/fragment_main">
+        <action
+            android:id="@+id/action_mainFragment_to_navigation_onboarding"
+            app:destination="@id/navigation_onboarding"
+            app:popUpTo="@id/mainFragment"
+            app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_mainFragment_to_authFragment"
+            app:destination="@id/navigation_auth"
+            app:popUpTo="@id/mainFragment"
+            app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_mainFragment_to_navigation_home"
+            app:destination="@id/navigation_home"
+            app:popUpTo="@id/mainFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_single_subreddit_fragment"
+        android:name="com.mivanovskaya.humblr.presentation.home.SingleSubredditFragment"
+        android:label="Subreddit Description"
+        tools:layout="@layout/fragment_single_subreddit">
+        <argument
+            android:name="name"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_navigation_single_subreddit_to_navigation_home"
+            app:destination="@id/navigation_home"
+            app:launchSingleTop="true"
+            app:popUpTo="@id/navigation_home" />
+
+        <action
+            android:id="@+id/action_navigation_single_subreddit_to_navigation_user"
+            app:destination="@id/navigation_user"
+            app:launchSingleTop="true"
+            app:popUpTo="@id/navigation_user" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_user"
+        android:name="com.mivanovskaya.humblr.presentation.user.UserFragment"
+        android:label="User"
+        tools:layout="@layout/fragment_user">
+    <argument
+        android:name="name"
+        android:defaultValue=""
+        app:argType="string" />
+    </fragment>
+
+</navigation>

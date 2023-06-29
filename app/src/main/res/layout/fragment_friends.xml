@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/blue_alfa4"
+    tools:context=".presentation.profile.FriendsFragment">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/topAppBar"
+        style="@style/MyToolbarStyle"
+        android:layout_width="match_parent"
+        tools:ignore="MissingConstraints">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize">
+
+            <ImageView
+                android:id="@+id/button_back"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:layout_marginHorizontal="@dimen/activity_horizontal_margin"
+                android:clickable="true"
+                android:focusable="true"
+                android:src="@drawable/ic_arrow" />
+
+            <TextView
+                style="@style/MyToolbarStyle"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:text="@string/list_of_friends"
+                android:textColor="@color/white" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginHorizontal="@dimen/activity_horizontal_margin"
+                android:src="@drawable/ic_info_24" />
+        </LinearLayout>
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="@dimen/error_margin_bottom"
+        android:orientation="vertical"
+        android:padding="@dimen/margin_standard"
+        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+        app:layout_constrainedHeight="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/topAppBar"
+        app:spanCount="2" />
+
+    <include layout="@layout/common_progress_error" android:id="@+id/common" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
