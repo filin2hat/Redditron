@@ -1,7 +1,7 @@
 package com.biryulindevelop.redditron.data.api
 
-import com.biryulindevelop.redditron.data.api.dto.postDto.PostListingDto
-import com.biryulindevelop.redditron.data.api.dto.postDto.SinglePostListingDto
+import com.biryulindevelop.redditron.domain.dto.post.PostListingDto
+import com.biryulindevelop.redditron.domain.dto.post.SinglePostListingDto
 
 import retrofit2.http.GET
 import retrofit2.http.POST
@@ -47,9 +47,4 @@ interface ApiPost {
     suspend fun getAllSavedPosts(
         @Path("username") username: String?
     ): PostListingDto
-
-    /*    @POST("/api/unsave")
-        suspend fun unsaveAllPosts(
-            @Query("id") postName: String
-        )*/
 }

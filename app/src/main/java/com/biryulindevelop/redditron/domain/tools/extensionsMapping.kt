@@ -1,13 +1,12 @@
 package com.biryulindevelop.redditron.domain.tools
 
-import com.biryulindevelop.redditron.data.api.dto.commentDto.CommentDto
-import com.biryulindevelop.redditron.data.api.dto.commentDto.CommentListingDto
-import com.biryulindevelop.redditron.data.api.dto.postDto.PostDto
-import com.biryulindevelop.redditron.data.api.dto.profileDto.FriendsDto
-import com.biryulindevelop.redditron.data.api.dto.profileDto.FriendsDto.Children
-import com.biryulindevelop.redditron.data.api.dto.profileDto.ProfileDto
-import com.biryulindevelop.redditron.data.api.dto.profileDto.ProfileDto.UserDataSubDto
-import com.biryulindevelop.redditron.data.api.dto.subredditDto.SubredditDto
+import com.biryulindevelop.redditron.domain.dto.comment.CommentDto
+import com.biryulindevelop.redditron.domain.dto.comment.CommentListingDto
+import com.biryulindevelop.redditron.domain.dto.post.PostDto
+import com.biryulindevelop.redditron.domain.dto.profile.FriendsListingDto
+import com.biryulindevelop.redditron.domain.dto.profile.ProfileDto
+import com.biryulindevelop.redditron.domain.dto.profile.ProfileDto.UserDataSubDto
+import com.biryulindevelop.redditron.domain.dto.subreddit.SubredditDto
 import com.biryulindevelop.redditron.domain.models.Comment
 import com.biryulindevelop.redditron.domain.models.Comments
 import com.biryulindevelop.redditron.domain.models.Friend
@@ -39,11 +38,11 @@ fun ProfileDto.toProfile() =
 
 fun UserDataSubDto.toUserDataSub() = UserDataSubscribers(subscribers, title)
 
-fun FriendsDto.toFriends() = Friends(friends_list = children.toListFriends())
+fun FriendsListingDto.FriendsDto.toFriends() = Friends(friends_list = children.toListFriends())
 
-fun List<Children>.toListFriends(): List<Friend> = this.map { item -> item.toFriend() }
+fun List<FriendsListingDto.FriendsDto.Children>.toListFriends(): List<Friend> = this.map { item -> item.toFriend() }
 
-fun Children.toFriend() = Friend(id = id, name = name)
+fun FriendsListingDto.FriendsDto.Children.toFriend() = Friend(id = id, name = name)
 
 fun List<SubredditDto>.toListSubreddit(): List<Subreddit> = this.map { item -> item.toSubreddit() }
 

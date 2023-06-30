@@ -2,17 +2,17 @@ package com.biryulindevelop.redditron.presentation.delegates
 
 import android.view.View
 import com.biryulindevelop.redditron.R
+import com.biryulindevelop.redditron.application.SUBSCRIBE
+import com.biryulindevelop.redditron.application.UNSUBSCRIBE
 import com.biryulindevelop.redditron.databinding.ItemPostImageBinding
 import com.biryulindevelop.redditron.databinding.ItemSubredditBinding
 import com.biryulindevelop.redditron.domain.ListItem
 import com.biryulindevelop.redditron.domain.models.Post
 import com.biryulindevelop.redditron.domain.models.Subreddit
 import com.biryulindevelop.redditron.domain.tools.ClickableView
-import com.biryulindevelop.redditron.domain.tools.SUBSCRIBE
 import com.biryulindevelop.redditron.domain.tools.SubQuery
-import com.biryulindevelop.redditron.domain.tools.UNSUBSCRIBE
-import com.biryulindevelop.redditron.tools.loadCircleImage
-import com.biryulindevelop.redditron.tools.loadImage
+import com.biryulindevelop.redditron.presentation.utils.loadCircleImage
+import com.biryulindevelop.redditron.presentation.utils.loadImage
 import com.google.android.material.snackbar.BaseTransientBottomBar.LENGTH_SHORT
 import com.google.android.material.snackbar.Snackbar
 import com.hannesdorfmann.adapterdelegates4.dsl.AdapterDelegateViewBindingViewHolder

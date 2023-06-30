@@ -1,15 +1,14 @@
 package com.biryulindevelop.redditron.data.api
 
-import com.biryulindevelop.redditron.data.api.dto.postDto.PostListingDto
-import com.biryulindevelop.redditron.data.api.dto.subredditDto.SubredditDto
-import com.biryulindevelop.redditron.data.api.dto.subredditDto.SubredditListingDto
+import com.biryulindevelop.redditron.domain.dto.post.PostListingDto
+import com.biryulindevelop.redditron.domain.dto.subreddit.SubredditDto
+import com.biryulindevelop.redditron.domain.dto.subreddit.SubredditListingDto
 import retrofit2.http.GET
 import retrofit2.http.POST
 import retrofit2.http.Path
 import retrofit2.http.Query
 
 interface ApiSubreddits {
-
     @GET("/subreddits/{source}")
     suspend fun getSubredditListing(
         @Path("source") source: String?,

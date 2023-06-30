@@ -86,7 +86,7 @@ dependencies {
     //OkHttp3
     implementation 'com.squareup.okhttp3:logging-interceptor:5.0.0-alpha.6'
 
-    //
+    //Crypto
     implementation 'androidx.security:security-crypto-ktx:1.1.0-alpha06'
 
     //Retrofit
@@ -109,7 +109,7 @@ dependencies {
     kapt 'com.github.bumptech.glide:compiler:4.15.1'
 
     //Lottie
-    implementation "com.airbnb.android:lottie:5.2.0"
+    implementation 'com.airbnb.android:lottie:6.0.1'
 
     //Tests
     testImplementation 'junit:junit:4.13.2'

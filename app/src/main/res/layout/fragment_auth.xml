@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".presentation.authorization.AuthFragment">
+    tools:context=".presentation.screens.authorization.AuthFragment">
 
     <View
         android:id="@+id/blue_rectangle"

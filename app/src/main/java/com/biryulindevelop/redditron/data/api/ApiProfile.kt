@@ -1,9 +1,9 @@
 package com.biryulindevelop.redditron.data.api
 
-import com.biryulindevelop.redditron.data.api.dto.postDto.SinglePostListingDto
-import com.biryulindevelop.redditron.data.api.dto.profileDto.ClickedUserProfileDto
-import com.biryulindevelop.redditron.data.api.dto.profileDto.FriendsListingDto
-import com.biryulindevelop.redditron.data.api.dto.profileDto.ProfileDto
+import com.biryulindevelop.redditron.domain.dto.post.SinglePostListingDto
+import com.biryulindevelop.redditron.domain.dto.profile.ClickedUserProfileDto
+import com.biryulindevelop.redditron.domain.dto.profile.FriendsListingDto
+import com.biryulindevelop.redditron.domain.dto.profile.ProfileDto
 import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.PUT
@@ -32,8 +32,4 @@ interface ApiProfile {
     suspend fun getUserContent(
         @Path("username") username: String
     ): SinglePostListingDto
-
-    /** no unfriend feature in tech.reqs, can add later*/
-//    DELETE /api/v1/me/friends/usernamesubscribe
-//    Stop being friends with a user.
 }

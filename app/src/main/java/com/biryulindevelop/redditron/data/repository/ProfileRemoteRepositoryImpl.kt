@@ -1,8 +1,8 @@
 package com.biryulindevelop.redditron.data.repository
 
 import com.biryulindevelop.redditron.data.api.ApiProfile
-import com.biryulindevelop.redditron.data.api.dto.postDto.PostDto
 import com.biryulindevelop.redditron.domain.ListItem
+import com.biryulindevelop.redditron.domain.dto.post.PostDto
 import com.biryulindevelop.redditron.domain.models.Friends
 import com.biryulindevelop.redditron.domain.models.Profile
 import com.biryulindevelop.redditron.domain.repository.ProfileRemoteRepository
@@ -24,12 +24,10 @@ class ProfileRemoteRepositoryImpl @Inject constructor(private val apiProfile: Ap
 
     override suspend fun makeFriends(username: String) = apiProfile.makeFriends(username)
 
-    /** no comments in tech.reqs, but can add later, after comments view implementation*/
     override suspend fun getUserContent(username: String): List<ListItem> {
         val list = mutableListOf<ListItem>()
         apiProfile.getUserContent(username).data.children.forEach { child ->
             if (child is PostDto) list.add(child.toPost())
-            //else if (child is CommentDto) list.add(child.toComment())
         }
         return list.toList()
     }

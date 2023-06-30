@@ -3,7 +3,7 @@ package com.biryulindevelop.redditron.presentation.delegates
 import com.biryulindevelop.redditron.databinding.ItemFriendsBinding
 import com.biryulindevelop.redditron.domain.ListItem
 import com.biryulindevelop.redditron.domain.models.Friend
-import com.biryulindevelop.redditron.tools.loadImage
+import com.biryulindevelop.redditron.presentation.utils.loadImage
 import com.hannesdorfmann.adapterdelegates4.dsl.adapterDelegateViewBinding
 
 fun friendsDelegate() = adapterDelegateViewBinding<Friend, ListItem, ItemFriendsBinding>(

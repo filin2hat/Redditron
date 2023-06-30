@@ -3,9 +3,9 @@ package com.biryulindevelop.redditron.data.repository
 import com.biryulindevelop.redditron.data.api.ApiPost
 import com.biryulindevelop.redditron.data.api.ApiProfile
 import com.biryulindevelop.redditron.data.api.ApiSubreddits
-import com.biryulindevelop.redditron.data.api.dto.commentDto.CommentDto
-import com.biryulindevelop.redditron.data.api.dto.postDto.PostDto
 import com.biryulindevelop.redditron.domain.ListItem
+import com.biryulindevelop.redditron.domain.dto.comment.CommentDto
+import com.biryulindevelop.redditron.domain.dto.post.PostDto
 import com.biryulindevelop.redditron.domain.models.Subreddit
 import com.biryulindevelop.redditron.domain.repository.SubredditsRemoteRepository
 import com.biryulindevelop.redditron.domain.tools.ListTypes

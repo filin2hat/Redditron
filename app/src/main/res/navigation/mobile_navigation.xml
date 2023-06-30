@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/navigation_onboarding"
-        android:name="com.biryulindevelop.redditron.presentation.onboarding.OnboardingFragment"
+        android:name="com.biryulindevelop.redditron.presentation.screens.onboarding.OnboardingFragment"
         tools:layout="@layout/fragment_onboarding">
         <action
             android:id="@+id/action_navigation_onboarding_to_navigation_auth"
@@ -18,7 +18,7 @@
 
     <fragment
         android:id="@+id/navigation_auth"
-        android:name="com.biryulindevelop.redditron.presentation.authorization.AuthFragment"
+        android:name="com.biryulindevelop.redditron.presentation.screens.authorization.AuthFragment"
         tools:layout="@layout/fragment_auth">
         <deepLink
             android:id="@+id/deepLink"
@@ -36,7 +36,7 @@
 
     <fragment
         android:id="@+id/navigation_home"
-        android:name="com.biryulindevelop.redditron.presentation.home.HomeFragment"
+        android:name="com.biryulindevelop.redditron.presentation.screens.home.HomeFragment"
         android:label="@string/title_home"
         tools:layout="@layout/fragment_home">
         <action
@@ -47,7 +47,7 @@
 
     <fragment
         android:id="@+id/navigation_favourites"
-        android:name="com.biryulindevelop.redditron.presentation.favourites.FavouritesFragment"
+        android:name="com.biryulindevelop.redditron.presentation.screens.favourites.FavouritesFragment"
         android:label="@string/title_favourites"
         tools:layout="@layout/fragment_favourites">
         <action
@@ -63,7 +63,7 @@
 
     <fragment
         android:id="@+id/navigation_profile"
-        android:name="com.biryulindevelop.redditron.presentation.profile.ProfileFragment"
+        android:name="com.biryulindevelop.redditron.presentation.screens.profile.ProfileFragment"
         android:label="@string/title_profile"
         tools:layout="@layout/fragment_profile">
         <action
@@ -80,7 +80,7 @@
 
     <fragment
         android:id="@+id/navigation_friends"
-        android:name="com.biryulindevelop.redditron.presentation.profile.FriendsFragment"
+        android:name="com.biryulindevelop.redditron.presentation.screens.profile.FriendsFragment"
         tools:layout="@layout/fragment_friends">
         <action
             android:id="@+id/action_navigation_friends_to_navigation_profile"
@@ -113,7 +113,7 @@
 
     <fragment
         android:id="@+id/navigation_single_subreddit_fragment"
-        android:name="com.biryulindevelop.redditron.presentation.home.SingleSubredditFragment"
+        android:name="com.biryulindevelop.redditron.presentation.screens.home.SingleSubredditFragment"
         android:label="Subreddit Description"
         tools:layout="@layout/fragment_single_subreddit">
         <argument
@@ -134,7 +134,7 @@
 
     <fragment
         android:id="@+id/navigation_user"
-        android:name="com.biryulindevelop.redditron.presentation.user.UserFragment"
+        android:name="com.biryulindevelop.redditron.presentation.screens.user.UserFragment"
         android:label="User"
         tools:layout="@layout/fragment_user">
         <argument

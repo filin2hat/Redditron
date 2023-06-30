@@ -5,7 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import androidx.fragment.app.viewModels
 import com.biryulindevelop.redditron.databinding.FragmentMainBinding
-import com.biryulindevelop.redditron.tools.BaseFragment
+import com.biryulindevelop.redditron.presentation.utils.BaseFragment
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
