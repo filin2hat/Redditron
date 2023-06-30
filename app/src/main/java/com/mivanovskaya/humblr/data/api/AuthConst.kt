@@ -1,6 +1,8 @@
 package com.mivanovskaya.humblr.data.api
 
-const val CLIENT_ID = "6kBFf_KVM4vjXiDzxvGjJw"
+import com.mivanovskaya.humblr.BuildConfig
+
+const val CLIENT_ID = BuildConfig.CLIENT_ID
 const val CLIENT_SECRET = ""
 const val RESPONSE_TYPE = "code"
 const val STATE = "my_state"
