@@ -12,7 +12,6 @@ import com.biryulindevelop.redditron.domain.ListItem
 import com.biryulindevelop.redditron.domain.models.Subreddit
 import com.biryulindevelop.redditron.domain.repository.SubredditsRemoteRepository
 import com.biryulindevelop.redditron.domain.tools.*
-import com.biryulindevelop.redditron.presentation.favourites.FavouritesFragmentDirections
 import com.biryulindevelop.redditron.presentation.utils.StateViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineScope

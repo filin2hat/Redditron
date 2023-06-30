@@ -1,7 +1,7 @@
 package com.biryulindevelop.redditron.data.api.authentication.interceptor
 
 import android.content.Context
-import com.biryulindevelop.redditron.application.TOKEN_KEY
+import com.biryulindevelop.common.constants.TOKEN_KEY
 import com.biryulindevelop.redditron.data.sharedprefsservice.SharedPrefsService
 
 class AuthTokenProvider(
@@ -10,5 +10,5 @@ class AuthTokenProvider(
 ) {
 
     fun getToken() = sharedPrefsService.create(context)
-        .getString(TOKEN_KEY, "")
+        .getString(com.biryulindevelop.common.constants.TOKEN_KEY, "")
 }

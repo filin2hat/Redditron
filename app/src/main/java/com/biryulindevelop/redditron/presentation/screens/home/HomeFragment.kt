@@ -8,7 +8,7 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.biryulindevelop.redditron.R
-import com.biryulindevelop.redditron.application.SUBSCRIBE
+import com.biryulindevelop.common.constants.SUBSCRIBE
 import com.biryulindevelop.redditron.databinding.FragmentHomeBinding
 import com.biryulindevelop.redditron.domain.ListItem
 import com.biryulindevelop.redditron.domain.state.LoadState
@@ -106,7 +106,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
         if (clickableView == ClickableView.SUBSCRIBE) {
             viewModel.subscribe(subQuery)
             val text =
-                if (subQuery.action == SUBSCRIBE) getString(R.string.subscribed)
+                if (subQuery.action == com.biryulindevelop.common.constants.SUBSCRIBE) getString(R.string.subscribed)
                 else getString(R.string.unsubscribed)
             Snackbar.make(binding.recyclerView, text, LENGTH_SHORT).show()
         }

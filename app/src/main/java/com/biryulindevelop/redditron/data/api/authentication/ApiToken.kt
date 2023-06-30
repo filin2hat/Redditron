@@ -1,6 +1,6 @@
 package com.biryulindevelop.redditron.data.api.authentication
 
-import com.biryulindevelop.redditron.application.REDIRECT_URI
+import com.biryulindevelop.common.constants.REDIRECT_URI
 import retrofit2.http.*
 
 interface ApiToken {
@@ -9,7 +9,7 @@ interface ApiToken {
     suspend fun getToken(
         @Query("grant_type") grantType: String = "authorization_code",
         @Query("code") code: String,
-        @Query("redirect_uri") redirectUri: String = REDIRECT_URI
+        @Query("redirect_uri") redirectUri: String = com.biryulindevelop.common.constants.REDIRECT_URI
     ): TokenResponse
 }
 

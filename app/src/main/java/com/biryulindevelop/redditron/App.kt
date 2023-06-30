@@ -1,4 +1,4 @@
-package com.biryulindevelop.redditron.application
+package com.biryulindevelop.redditron
 
 import android.app.Application
 import dagger.hilt.android.HiltAndroidApp

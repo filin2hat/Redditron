@@ -2,8 +2,8 @@ package com.biryulindevelop.redditron.presentation.delegates
 
 import android.view.View
 import com.biryulindevelop.redditron.R
-import com.biryulindevelop.redditron.application.SUBSCRIBE
-import com.biryulindevelop.redditron.application.UNSUBSCRIBE
+import com.biryulindevelop.common.constants.SUBSCRIBE
+import com.biryulindevelop.common.constants.UNSUBSCRIBE
 import com.biryulindevelop.redditron.databinding.ItemPostImageBinding
 import com.biryulindevelop.redditron.databinding.ItemSubredditBinding
 import com.biryulindevelop.redditron.domain.ListItem
@@ -31,7 +31,7 @@ fun subredditsDelegate(
     }
     binding.subscribeButton.setOnClickListener {
         binding.subscribeButton.isSelected = !binding.subscribeButton.isSelected
-        val action = if (!binding.subscribeButton.isSelected) UNSUBSCRIBE else SUBSCRIBE
+        val action = if (!binding.subscribeButton.isSelected) com.biryulindevelop.common.constants.UNSUBSCRIBE else com.biryulindevelop.common.constants.SUBSCRIBE
         onClick(SubQuery(name = item.name, action = action), item, ClickableView.SUBSCRIBE)
     }
 

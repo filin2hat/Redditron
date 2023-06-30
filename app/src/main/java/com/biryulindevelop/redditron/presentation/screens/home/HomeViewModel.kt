@@ -15,7 +15,6 @@ import com.biryulindevelop.redditron.domain.state.LoadState
 import com.biryulindevelop.redditron.domain.tools.ListTypes
 import com.biryulindevelop.redditron.domain.tools.Query
 import com.biryulindevelop.redditron.domain.tools.SubQuery
-import com.biryulindevelop.redditron.presentation.home.HomeFragmentDirections
 import com.biryulindevelop.redditron.presentation.utils.StateViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.*

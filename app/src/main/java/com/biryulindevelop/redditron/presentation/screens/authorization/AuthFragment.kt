@@ -13,10 +13,9 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.biryulindevelop.redditron.R
-import com.biryulindevelop.redditron.application.REQUEST
+import com.biryulindevelop.common.constants.REQUEST
 import com.biryulindevelop.redditron.databinding.FragmentAuthBinding
 import com.biryulindevelop.redditron.domain.state.LoadState
-import com.biryulindevelop.redditron.presentation.authorization.AuthFragmentArgs
 import com.biryulindevelop.redditron.presentation.utils.BaseFragment
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
@@ -38,7 +37,7 @@ class AuthFragment : BaseFragment<FragmentAuthBinding>() {
 
     private fun setAuthorizationButton() {
         binding.authButton.setOnClickListener {
-            val intent = Intent(Intent.ACTION_VIEW, Uri.parse(REQUEST))
+            val intent = Intent(Intent.ACTION_VIEW, Uri.parse(com.biryulindevelop.common.constants.REQUEST))
             startActivity(intent)
         }
     }

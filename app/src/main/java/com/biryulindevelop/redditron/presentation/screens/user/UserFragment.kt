@@ -15,7 +15,6 @@ import com.biryulindevelop.redditron.domain.state.LoadState
 import com.biryulindevelop.redditron.domain.tools.ClickableView
 import com.biryulindevelop.redditron.domain.tools.SubQuery
 import com.biryulindevelop.redditron.presentation.delegates.postsDelegate
-import com.biryulindevelop.redditron.presentation.user.UserFragmentArgs
 import com.biryulindevelop.redditron.presentation.utils.BaseFragment
 import com.biryulindevelop.redditron.presentation.utils.loadImage
 import com.google.android.material.snackbar.BaseTransientBottomBar.LENGTH_SHORT

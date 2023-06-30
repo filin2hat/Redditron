@@ -40,7 +40,8 @@ fun UserDataSubDto.toUserDataSub() = UserDataSubscribers(subscribers, title)
 
 fun FriendsListingDto.FriendsDto.toFriends() = Friends(friends_list = children.toListFriends())
 
-fun List<FriendsListingDto.FriendsDto.Children>.toListFriends(): List<Friend> = this.map { item -> item.toFriend() }
+fun List<FriendsListingDto.FriendsDto.Children>.toListFriends(): List<Friend> =
+    this.map { item -> item.toFriend() }
 
 fun FriendsListingDto.FriendsDto.Children.toFriend() = Friend(id = id, name = name)
 

@@ -1,4 +1,4 @@
-package com.biryulindevelop.redditron.application.di
+package com.biryulindevelop.redditron.di
 
 import com.biryulindevelop.redditron.data.repository.*
 import com.biryulindevelop.redditron.domain.repository.ProfileRemoteRepository

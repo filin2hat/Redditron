@@ -4,9 +4,9 @@ import android.content.Context
 import android.content.SharedPreferences
 import androidx.security.crypto.EncryptedSharedPreferences
 import androidx.security.crypto.MasterKey
-import com.biryulindevelop.redditron.application.TOKEN_ENABLED
-import com.biryulindevelop.redditron.application.TOKEN_KEY
-import com.biryulindevelop.redditron.application.TOKEN_NAME
+import com.biryulindevelop.common.constants.TOKEN_ENABLED
+import com.biryulindevelop.common.constants.TOKEN_KEY
+import com.biryulindevelop.common.constants.TOKEN_NAME
 import com.biryulindevelop.redditron.domain.storageservice.StorageService
 import dagger.hilt.android.qualifiers.ApplicationContext
 import javax.inject.Inject
@@ -33,7 +33,7 @@ class SharedPrefsService @Inject constructor(@ApplicationContext context: Contex
 
         return EncryptedSharedPreferences.create(
             context,
-            TOKEN_NAME,
+            com.biryulindevelop.common.constants.TOKEN_NAME,
             masterKey,
             EncryptedSharedPreferences.PrefKeyEncryptionScheme.AES256_SIV,
             EncryptedSharedPreferences.PrefValueEncryptionScheme.AES256_GCM
@@ -41,8 +41,8 @@ class SharedPrefsService @Inject constructor(@ApplicationContext context: Contex
     }
 
     override fun saveEncryptedToken(data: String) {
-        save(TOKEN_ENABLED, true)
-        return sharedPreferences.edit().putString(TOKEN_KEY, data).apply()
+        save(com.biryulindevelop.common.constants.TOKEN_ENABLED, true)
+        return sharedPreferences.edit().putString(com.biryulindevelop.common.constants.TOKEN_KEY, data).apply()
     }
 
     private fun SharedPreferences.save(key: String, value: Any?) {

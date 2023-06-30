@@ -1,6 +1,6 @@
-package com.biryulindevelop.redditron.application
+package com.biryulindevelop.common.constants
 
-import com.biryulindevelop.redditron.BuildConfig
+import com.biryulindevelop.common.BuildConfig
 
 const val REDIRECT_URI = "http://humblrmi/redirect"
 const val CLIENT_ID = BuildConfig.CLIENT_ID

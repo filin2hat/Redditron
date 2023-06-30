@@ -1,8 +1,8 @@
 package com.biryulindevelop.redditron.data.api.authentication.interceptor
 
 import android.util.Base64
-import com.biryulindevelop.redditron.application.CLIENT_ID
-import com.biryulindevelop.redditron.application.CLIENT_SECRET
+import com.biryulindevelop.common.constants.CLIENT_ID
+import com.biryulindevelop.common.constants.CLIENT_SECRET
 import okhttp3.Interceptor
 import okhttp3.Response
 
@@ -23,7 +23,7 @@ class AuthTokenInterceptor(private val tokenProvider: AuthTokenProvider) : Inter
     }
 
     companion object {
-        private const val authString = "$CLIENT_ID:$CLIENT_SECRET"
+        private const val authString = "${com.biryulindevelop.common.constants.CLIENT_ID}:${com.biryulindevelop.common.constants.CLIENT_SECRET}"
         val encodedAuthString: String =
             Base64.encodeToString(authString.toByteArray(), Base64.NO_WRAP)
 

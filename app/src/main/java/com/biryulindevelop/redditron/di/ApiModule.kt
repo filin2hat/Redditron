@@ -1,4 +1,4 @@
-package com.biryulindevelop.redditron.application.di
+package com.biryulindevelop.redditron.di
 
 import android.content.Context
 import com.biryulindevelop.redditron.data.api.ApiPost

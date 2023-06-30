@@ -17,17 +17,12 @@ android {
     namespace 'com.biryulindevelop.redditron'
     compileSdk 33
 
-    Properties properties = new Properties()
-    properties.load(rootProject.file("local.properties").newDataInputStream())
-
     defaultConfig {
         applicationId "com.biryulindevelop.redditron"
         minSdk 24
         targetSdk 33
         versionCode 1
         versionName "1.0"
-
-        buildConfigField("String", "CLIENT_ID", "\"${properties.getProperty("CLIENT_ID")}\"")
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -53,6 +48,9 @@ android {
 }
 
 dependencies {
+
+    //modules
+    implementation project(':common')
 
     //Kotlin
     implementation 'androidx.core:core-ktx:1.10.1'
