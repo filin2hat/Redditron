@@ -34,25 +34,25 @@
             android:id="@+id/user_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="@dimen/small_font_size"
             android:layout_marginStart="@dimen/header_padding"
             android:clickable="true"
             android:focusable="true"
             android:text="u/username"
+            android:textSize="@dimen/small_font_size"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/subreddit_name" />
 
         <TextView
-            android:focusable="true"
-            android:clickable="true"
             android:id="@+id/post_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="@dimen/activity_horizontal_margin"
+            android:clickable="true"
+            android:focusable="true"
             android:text="Post Title"
             android:textSize="@dimen/title_font_size"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/user_name"/>
+            app:layout_constraintTop_toBottomOf="@id/user_name" />
 
         <LinearLayout
             android:id="@+id/post_body"
@@ -70,7 +70,7 @@
                 android:id="@+id/post_body_image"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:adjustViewBounds="true"/>
+                android:adjustViewBounds="true" />
 
         </LinearLayout>
 
@@ -81,9 +81,9 @@
             android:layout_marginStart="@dimen/header_padding"
             android:layout_marginTop="@dimen/margin_mini"
             android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/post_body"
-            app:layout_constraintBottom_toBottomOf="parent">
+            app:layout_constraintTop_toBottomOf="@id/post_body">
 
             <androidx.appcompat.widget.AppCompatImageButton
                 android:id="@+id/up_vote_button"
@@ -91,9 +91,9 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:layout_margin="@dimen/margin_mini"
+                android:background="@color/white"
                 android:scaleX="1.5"
                 android:scaleY="1.5"
-                android:background="@color/white"
                 android:src="@drawable/selector_up_vote" />
 
             <TextView
@@ -110,55 +110,56 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:layout_margin="@dimen/margin_mini"
+                android:background="@color/white"
                 android:scaleX="1.5"
                 android:scaleY="1.5"
-                android:background="@color/white"
                 android:src="@drawable/selector_down_vote" />
         </LinearLayout>
 
         <LinearLayout
-            android:layout_height="wrap_content"
             android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/margin_standard"
             android:orientation="horizontal"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/post_body"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent">
-
-        <androidx.appcompat.widget.AppCompatImageButton
-            android:id="@+id/download_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="@dimen/margin_mini"
-            android:background="@color/white"
-            android:scaleY="1.2"
-            android:scaleX="1.2"
-            android:src="@drawable/selector_download"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/download_text"
-            app:layout_constraintTop_toBottomOf="@id/post_body" />
-
-        <TextView
-            android:id="@+id/download_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@color/white"
-            android:text="@string/download"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/post_body" />
+            app:layout_constraintTop_toBottomOf="@id/post_body">
+
+            <androidx.appcompat.widget.AppCompatImageButton
+                android:id="@+id/download_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/margin_mini"
+                android:background="@color/white"
+                android:scaleX="1.2"
+                android:scaleY="1.2"
+                android:src="@drawable/selector_download"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/download_text"
+                app:layout_constraintTop_toBottomOf="@id/post_body" />
+
+            <TextView
+                android:id="@+id/download_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:text="@string/download"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/post_body" />
 
         </LinearLayout>
+
         <androidx.appcompat.widget.AppCompatImageButton
             android:id="@+id/save_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/margin_mini"
             android:background="@color/white"
-            android:scaleY="0.8"
             android:scaleX="0.8"
+            android:scaleY="0.8"
             android:src="@drawable/selector_save"
             app:layout_constraintEnd_toStartOf="@id/save_text"
             app:layout_constraintTop_toBottomOf="@id/post_body" />
@@ -167,8 +168,8 @@
             android:id="@+id/save_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_mini"
             android:layout_marginStart="@dimen/margin_mini"
+            android:layout_marginTop="@dimen/margin_mini"
             android:layout_marginEnd="@dimen/activity_horizontal_margin"
             android:background="@color/white"
             android:text="@string/save"

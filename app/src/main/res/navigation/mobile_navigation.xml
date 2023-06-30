@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/navigation_onboarding"
-        android:name="com.mivanovskaya.humblr.presentation.onboarding.OnboardingFragment"
+        android:name="com.biryulindevelop.redditron.presentation.onboarding.OnboardingFragment"
         tools:layout="@layout/fragment_onboarding">
         <action
             android:id="@+id/action_navigation_onboarding_to_navigation_auth"
@@ -18,7 +18,7 @@
 
     <fragment
         android:id="@+id/navigation_auth"
-        android:name="com.mivanovskaya.humblr.presentation.authorization.AuthFragment"
+        android:name="com.biryulindevelop.redditron.presentation.authorization.AuthFragment"
         tools:layout="@layout/fragment_auth">
         <deepLink
             android:id="@+id/deepLink"
@@ -36,7 +36,7 @@
 
     <fragment
         android:id="@+id/navigation_home"
-        android:name="com.mivanovskaya.humblr.presentation.home.HomeFragment"
+        android:name="com.biryulindevelop.redditron.presentation.home.HomeFragment"
         android:label="@string/title_home"
         tools:layout="@layout/fragment_home">
         <action
@@ -47,23 +47,23 @@
 
     <fragment
         android:id="@+id/navigation_favourites"
-        android:name="com.mivanovskaya.humblr.presentation.favourites.FavouritesFragment"
+        android:name="com.biryulindevelop.redditron.presentation.favourites.FavouritesFragment"
         android:label="@string/title_favourites"
-        tools:layout="@layout/fragment_favourites" >
+        tools:layout="@layout/fragment_favourites">
         <action
             android:id="@+id/action_navigation_favourites_to_navigation_user"
             app:destination="@id/navigation_user"
             app:launchSingleTop="true"
-            app:popUpTo="@id/navigation_user"/>
+            app:popUpTo="@id/navigation_user" />
         <action
             android:id="@+id/action_navigation_favourites_to_navigation_single_subreddit_fragment"
             app:destination="@id/navigation_single_subreddit_fragment"
-            app:popUpTo="@id/navigation_favourites"/>
+            app:popUpTo="@id/navigation_favourites" />
     </fragment>
 
     <fragment
         android:id="@+id/navigation_profile"
-        android:name="com.mivanovskaya.humblr.presentation.profile.ProfileFragment"
+        android:name="com.biryulindevelop.redditron.presentation.profile.ProfileFragment"
         android:label="@string/title_profile"
         tools:layout="@layout/fragment_profile">
         <action
@@ -80,7 +80,7 @@
 
     <fragment
         android:id="@+id/navigation_friends"
-        android:name="com.mivanovskaya.humblr.presentation.profile.FriendsFragment"
+        android:name="com.biryulindevelop.redditron.presentation.profile.FriendsFragment"
         tools:layout="@layout/fragment_friends">
         <action
             android:id="@+id/action_navigation_friends_to_navigation_profile"
@@ -91,7 +91,7 @@
 
     <fragment
         android:id="@+id/mainFragment"
-        android:name="com.mivanovskaya.humblr.presentation.MainFragment"
+        android:name="com.biryulindevelop.redditron.presentation.MainFragment"
         android:label="fragment_main"
         tools:layout="@layout/fragment_main">
         <action
@@ -113,7 +113,7 @@
 
     <fragment
         android:id="@+id/navigation_single_subreddit_fragment"
-        android:name="com.mivanovskaya.humblr.presentation.home.SingleSubredditFragment"
+        android:name="com.biryulindevelop.redditron.presentation.home.SingleSubredditFragment"
         android:label="Subreddit Description"
         tools:layout="@layout/fragment_single_subreddit">
         <argument
@@ -134,13 +134,13 @@
 
     <fragment
         android:id="@+id/navigation_user"
-        android:name="com.mivanovskaya.humblr.presentation.user.UserFragment"
+        android:name="com.biryulindevelop.redditron.presentation.user.UserFragment"
         android:label="User"
         tools:layout="@layout/fragment_user">
-    <argument
-        android:name="name"
-        android:defaultValue=""
-        app:argType="string" />
+        <argument
+            android:name="name"
+            android:defaultValue=""
+            app:argType="string" />
     </fragment>
 
 </navigation>

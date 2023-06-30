@@ -28,12 +28,12 @@
                 android:src="@drawable/ic_arrow" />
 
             <TextView
-                style="@style/MyToolbarStyle"
                 android:id="@+id/subreddit_name"
+                style="@style/MyToolbarStyle"
                 android:layout_width="0dp"
                 android:layout_weight="1"
-                tools:text="@tools:sample/lorem"
-                android:textColor="@color/white" />
+                android:textColor="@color/white"
+                tools:text="@tools:sample/lorem" />
 
             <ImageView
                 android:id="@+id/expand_button"
@@ -50,10 +50,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/margin_standard"
+        android:layout_marginBottom="@dimen/error_margin_bottom"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constrainedHeight="true"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginBottom="@dimen/error_margin_bottom"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/topAppBar"
         tools:listitem="@layout/item_post_image" />
@@ -63,12 +63,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/white"
-        android:orientation="vertical"
         android:elevation="@dimen/item_list_elevation"
+        android:orientation="vertical"
+        android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/topAppBar"
-        android:visibility="gone">
+        app:layout_constraintTop_toBottomOf="@+id/topAppBar">
 
         <TextView
             android:id="@+id/subscribers"
@@ -91,8 +91,8 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginBottom="@dimen/margin_standard">
+            android:layout_marginBottom="@dimen/margin_standard"
+            android:orientation="horizontal">
 
             <androidx.appcompat.widget.AppCompatImageButton
                 android:id="@+id/share_button"
@@ -115,6 +115,8 @@
         </LinearLayout>
     </LinearLayout>
 
-    <include layout="@layout/common_progress_error" android:id="@+id/common" />
+    <include
+        android:id="@+id/common"
+        layout="@layout/common_progress_error" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

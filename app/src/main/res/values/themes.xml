@@ -42,12 +42,4 @@
         <item name="android:layout_height">@dimen/tab_layout_height</item>
         <item name="android:layout_width">wrap_content</item>
     </style>
-
-    <!--style name="Theme.Humblr.AppBarOverlay"
-        parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
-    <style name="Theme.Humblr.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
-    <style name="ExpandedBarTextStyle" parent="Theme.Humblr">
-        <item name="android:textSize">0sp</item>
-        <item name="android:textColor">@android:color/transparent</item>
-    </style-->
 </resources>

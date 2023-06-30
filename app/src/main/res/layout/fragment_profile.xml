@@ -11,8 +11,8 @@
         android:id="@+id/container_view"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:orientation="vertical"
         android:gravity="center_horizontal"
+        android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -116,6 +116,8 @@
 
     </LinearLayout>
 
-    <include layout="@layout/common_progress_error" android:id="@+id/common" />
+    <include
+        android:id="@+id/common"
+        layout="@layout/common_progress_error" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

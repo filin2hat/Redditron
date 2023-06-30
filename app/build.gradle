@@ -8,21 +8,20 @@ buildscript {
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
-    id 'org.jetbrains.kotlin.kapt'
     id 'kotlin-kapt'
     id "com.google.dagger.hilt.android"
     id 'androidx.navigation.safeargs.kotlin'
 }
 
 android {
-    namespace 'com.mivanovskaya.humblr'
+    namespace 'com.biryulindevelop.redditron'
     compileSdk 33
 
     Properties properties = new Properties()
     properties.load(rootProject.file("local.properties").newDataInputStream())
 
     defaultConfig {
-        applicationId "com.mivanovskaya.humblr"
+        applicationId "com.biryulindevelop.redditron"
         minSdk 24
         targetSdk 33
         versionCode 1
@@ -37,7 +36,7 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'),
-'proguard-rules.pro'
+                    'proguard-rules.pro'
         }
     }
     compileOptions {
@@ -111,8 +110,6 @@ dependencies {
 
     //Lottie
     implementation "com.airbnb.android:lottie:5.2.0"
-
-    // debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.10'
 
     //Tests
     testImplementation 'junit:junit:4.13.2'

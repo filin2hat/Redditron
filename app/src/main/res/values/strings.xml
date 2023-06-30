@@ -1,13 +1,13 @@
 <resources>
-    <string name="app_name" translatable="false">Humblr</string>
+    <string name="app_name" translatable="false">Redditron</string>
     <string name="title_home">Subreddits</string>
     <string name="title_favourites">Favourites</string>
     <string name="title_profile">Profile</string>
     <string name="auth_under_logo">Find like-minded people with Humblr</string>
     <string-array name="onboarding_texts_array1">
-    <item>Welcome to Humblr</item>
-    <item>SubHumblr</item>
-    <item>Sare and save</item>
+        <item>Welcome to Humblr</item>
+        <item>SubHumblr</item>
+        <item>Sare and save</item>
     </string-array>
     <string-array name="onboarding_texts_array2">
         <item>Communities of all kinds of interests are gathered here</item>

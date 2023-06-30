@@ -2,6 +2,7 @@
 <com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/full_subreddit_card"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginHorizontal="@dimen/margin_mini"
@@ -9,8 +10,7 @@
     app:cardCornerRadius="@dimen/card_corner_radius"
     app:cardPreventCornerOverlap="true"
     app:strokeColor="@color/grey"
-    app:strokeWidth="@dimen/card_stroke_width"
-    android:id="@+id/full_subreddit_card">
+    app:strokeWidth="@dimen/card_stroke_width">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -26,9 +26,9 @@
                 android:id="@+id/subreddit_image"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
-                android:src="@drawable/ic_r_circle"
                 android:layout_gravity="center"
-                android:layout_margin="@dimen/header_padding" />
+                android:layout_margin="@dimen/header_padding"
+                android:src="@drawable/ic_r_circle" />
 
             <TextView
                 android:id="@+id/subreddit_title"
@@ -36,8 +36,8 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/header_padding"
                 android:layout_weight="1"
-                tools:text="Subreddit Title"
-                android:textSize="@dimen/title_font_size" />
+                android:textSize="@dimen/title_font_size"
+                tools:text="Subreddit Title" />
 
             <androidx.appcompat.widget.AppCompatImageButton
                 android:id="@+id/subscribe_button"
