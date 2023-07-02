@@ -3,9 +3,8 @@ package com.biryulindevelop.redditron.presentation.screens.onboarding
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModel
 import androidx.navigation.fragment.findNavController
+import com.biryulindevelop.domain.storageservice.StorageService
 import com.biryulindevelop.redditron.R
-import com.biryulindevelop.common.constants.ONBOARDING_SHOWN
-import com.biryulindevelop.redditron.domain.storageservice.StorageService
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 

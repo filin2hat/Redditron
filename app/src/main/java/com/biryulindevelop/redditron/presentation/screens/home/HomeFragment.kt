@@ -7,13 +7,12 @@ import androidx.appcompat.widget.SearchView
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import com.biryulindevelop.domain.ListItem
+import com.biryulindevelop.domain.state.LoadState
+import com.biryulindevelop.domain.tools.ClickableView
+import com.biryulindevelop.domain.tools.SubQuery
 import com.biryulindevelop.redditron.R
-import com.biryulindevelop.common.constants.SUBSCRIBE
 import com.biryulindevelop.redditron.databinding.FragmentHomeBinding
-import com.biryulindevelop.redditron.domain.ListItem
-import com.biryulindevelop.redditron.domain.state.LoadState
-import com.biryulindevelop.redditron.domain.tools.ClickableView
-import com.biryulindevelop.redditron.domain.tools.SubQuery
 import com.biryulindevelop.redditron.presentation.utils.BaseFragment
 import com.biryulindevelop.redditron.presentation.utils.setSelectedTabListener
 import com.google.android.material.snackbar.BaseTransientBottomBar.LENGTH_SHORT

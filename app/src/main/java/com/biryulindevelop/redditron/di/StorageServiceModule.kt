@@ -1,8 +1,7 @@
 package com.biryulindevelop.redditron.di
 
-import com.biryulindevelop.redditron.data.repository.*
-import com.biryulindevelop.redditron.data.sharedprefsservice.SharedPrefsService
-import com.biryulindevelop.redditron.domain.storageservice.StorageService
+import com.biryulindevelop.data.sharedprefsservice.SharedPrefsService
+import com.biryulindevelop.domain.storageservice.StorageService
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn

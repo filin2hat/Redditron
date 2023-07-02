@@ -3,12 +3,10 @@ package com.biryulindevelop.redditron.presentation.screens.profile
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.viewModelScope
 import androidx.navigation.fragment.findNavController
-import com.biryulindevelop.common.constants.TOKEN_ENABLED
-import com.biryulindevelop.common.constants.TOKEN_KEY
-import com.biryulindevelop.redditron.domain.repository.ProfileRemoteRepository
-import com.biryulindevelop.redditron.domain.repository.SubredditsRemoteRepository
-import com.biryulindevelop.redditron.domain.state.LoadState
-import com.biryulindevelop.redditron.domain.storageservice.StorageService
+import com.biryulindevelop.domain.repository.ProfileRemoteRepository
+import com.biryulindevelop.domain.repository.SubredditsRemoteRepository
+import com.biryulindevelop.domain.state.LoadState
+import com.biryulindevelop.domain.storageservice.StorageService
 import com.biryulindevelop.redditron.presentation.utils.StateViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers

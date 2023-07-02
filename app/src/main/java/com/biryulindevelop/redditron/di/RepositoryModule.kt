@@ -1,8 +1,9 @@
 package com.biryulindevelop.redditron.di
 
-import com.biryulindevelop.redditron.data.repository.*
-import com.biryulindevelop.redditron.domain.repository.ProfileRemoteRepository
-import com.biryulindevelop.redditron.domain.repository.SubredditsRemoteRepository
+import com.biryulindevelop.data.repository.ProfileRemoteRepositoryImpl
+import com.biryulindevelop.data.repository.SubredditsRemoteRepositoryImpl
+import com.biryulindevelop.domain.repository.ProfileRemoteRepository
+import com.biryulindevelop.domain.repository.SubredditsRemoteRepository
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn

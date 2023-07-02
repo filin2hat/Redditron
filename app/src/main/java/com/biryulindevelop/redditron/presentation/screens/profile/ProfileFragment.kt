@@ -7,10 +7,10 @@ import androidx.appcompat.app.AlertDialog
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import com.biryulindevelop.domain.models.Profile
+import com.biryulindevelop.domain.state.LoadState
 import com.biryulindevelop.redditron.R
 import com.biryulindevelop.redditron.databinding.FragmentProfileBinding
-import com.biryulindevelop.redditron.domain.models.Profile
-import com.biryulindevelop.redditron.domain.state.LoadState
 import com.biryulindevelop.redditron.presentation.utils.BaseFragment
 import com.biryulindevelop.redditron.presentation.utils.loadImage
 import com.google.android.material.snackbar.BaseTransientBottomBar

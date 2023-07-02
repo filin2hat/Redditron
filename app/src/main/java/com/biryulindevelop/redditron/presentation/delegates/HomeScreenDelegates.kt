@@ -1,16 +1,14 @@
 package com.biryulindevelop.redditron.presentation.delegates
 
 import android.view.View
+import com.biryulindevelop.domain.ListItem
+import com.biryulindevelop.domain.models.Post
+import com.biryulindevelop.domain.models.Subreddit
+import com.biryulindevelop.domain.tools.ClickableView
+import com.biryulindevelop.domain.tools.SubQuery
 import com.biryulindevelop.redditron.R
-import com.biryulindevelop.common.constants.SUBSCRIBE
-import com.biryulindevelop.common.constants.UNSUBSCRIBE
 import com.biryulindevelop.redditron.databinding.ItemPostImageBinding
 import com.biryulindevelop.redditron.databinding.ItemSubredditBinding
-import com.biryulindevelop.redditron.domain.ListItem
-import com.biryulindevelop.redditron.domain.models.Post
-import com.biryulindevelop.redditron.domain.models.Subreddit
-import com.biryulindevelop.redditron.domain.tools.ClickableView
-import com.biryulindevelop.redditron.domain.tools.SubQuery
 import com.biryulindevelop.redditron.presentation.utils.loadCircleImage
 import com.biryulindevelop.redditron.presentation.utils.loadImage
 import com.google.android.material.snackbar.BaseTransientBottomBar.LENGTH_SHORT
@@ -31,7 +29,8 @@ fun subredditsDelegate(
     }
     binding.subscribeButton.setOnClickListener {
         binding.subscribeButton.isSelected = !binding.subscribeButton.isSelected
-        val action = if (!binding.subscribeButton.isSelected) com.biryulindevelop.common.constants.UNSUBSCRIBE else com.biryulindevelop.common.constants.SUBSCRIBE
+        val action =
+            if (!binding.subscribeButton.isSelected) com.biryulindevelop.common.constants.UNSUBSCRIBE else com.biryulindevelop.common.constants.SUBSCRIBE
         onClick(SubQuery(name = item.name, action = action), item, ClickableView.SUBSCRIBE)
     }
 

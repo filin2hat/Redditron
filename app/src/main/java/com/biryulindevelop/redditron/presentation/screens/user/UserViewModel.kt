@@ -1,9 +1,9 @@
 package com.biryulindevelop.redditron.presentation.screens.user
 
 import androidx.lifecycle.viewModelScope
-import com.biryulindevelop.redditron.domain.repository.ProfileRemoteRepository
-import com.biryulindevelop.redditron.domain.repository.SubredditsRemoteRepository
-import com.biryulindevelop.redditron.domain.state.LoadState
+import com.biryulindevelop.domain.repository.ProfileRemoteRepository
+import com.biryulindevelop.domain.repository.SubredditsRemoteRepository
+import com.biryulindevelop.domain.state.LoadState
 import com.biryulindevelop.redditron.presentation.utils.StateViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers

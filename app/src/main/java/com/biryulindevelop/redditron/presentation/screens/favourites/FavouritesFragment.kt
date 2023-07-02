@@ -7,12 +7,11 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.paging.LoadState
+import com.biryulindevelop.domain.ListItem
+import com.biryulindevelop.domain.tools.ClickableView
+import com.biryulindevelop.domain.tools.SubQuery
 import com.biryulindevelop.redditron.R
-import com.biryulindevelop.common.constants.SUBSCRIBE
 import com.biryulindevelop.redditron.databinding.FragmentFavouritesBinding
-import com.biryulindevelop.redditron.domain.ListItem
-import com.biryulindevelop.redditron.domain.tools.ClickableView
-import com.biryulindevelop.redditron.domain.tools.SubQuery
 import com.biryulindevelop.redditron.presentation.screens.home.HomePagedDataDelegationAdapter
 import com.biryulindevelop.redditron.presentation.utils.BaseFragment
 import com.biryulindevelop.redditron.presentation.utils.setSelectedTabListener
@@ -80,7 +79,9 @@ class FavouritesFragment : BaseFragment<FragmentFavouritesBinding>() {
             ClickableView.SUBSCRIBE -> {
                 viewModel.subscribe(subQuery)
                 val text =
-                    if (subQuery.action == com.biryulindevelop.common.constants.SUBSCRIBE) getString(R.string.subscribed)
+                    if (subQuery.action == com.biryulindevelop.common.constants.SUBSCRIBE) getString(
+                        R.string.subscribed
+                    )
                     else getString(R.string.unsubscribed)
                 Snackbar.make(binding.recyclerView, text, BaseTransientBottomBar.LENGTH_SHORT)
                     .show()

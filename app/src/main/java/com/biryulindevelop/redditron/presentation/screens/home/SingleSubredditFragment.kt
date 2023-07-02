@@ -8,15 +8,13 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.navArgs
+import com.biryulindevelop.domain.ListItem
+import com.biryulindevelop.domain.models.Subreddit
+import com.biryulindevelop.domain.state.LoadState
+import com.biryulindevelop.domain.tools.ClickableView
+import com.biryulindevelop.domain.tools.SubQuery
 import com.biryulindevelop.redditron.R
-import com.biryulindevelop.common.constants.SUBSCRIBE
-import com.biryulindevelop.common.constants.UNSUBSCRIBE
 import com.biryulindevelop.redditron.databinding.FragmentSingleSubredditBinding
-import com.biryulindevelop.redditron.domain.ListItem
-import com.biryulindevelop.redditron.domain.models.Subreddit
-import com.biryulindevelop.redditron.domain.state.LoadState
-import com.biryulindevelop.redditron.domain.tools.ClickableView
-import com.biryulindevelop.redditron.domain.tools.SubQuery
 import com.biryulindevelop.redditron.presentation.utils.BaseFragment
 import com.google.android.material.snackbar.BaseTransientBottomBar.LENGTH_SHORT
 import com.google.android.material.snackbar.Snackbar
@@ -115,7 +113,8 @@ class SingleSubredditFragment : BaseFragment<FragmentSingleSubredditBinding>() {
     private fun setSubscribeButtonClick(data: Subreddit) {
         binding.subscribeButton.setOnClickListener {
             binding.subscribeButton.isSelected = !binding.subscribeButton.isSelected
-            val action = if (!binding.subscribeButton.isSelected) com.biryulindevelop.common.constants.UNSUBSCRIBE else com.biryulindevelop.common.constants.SUBSCRIBE
+            val action =
+                if (!binding.subscribeButton.isSelected) com.biryulindevelop.common.constants.UNSUBSCRIBE else com.biryulindevelop.common.constants.SUBSCRIBE
             onClick(SubQuery(name = data.name, action = action), ClickableView.SUBSCRIBE)
         }
     }
@@ -137,7 +136,9 @@ class SingleSubredditFragment : BaseFragment<FragmentSingleSubredditBinding>() {
             ClickableView.SUBSCRIBE -> {
                 viewModel.subscribe(subQuery)
                 val text =
-                    if (subQuery.action == com.biryulindevelop.common.constants.SUBSCRIBE) getString(R.string.subscribed)
+                    if (subQuery.action == com.biryulindevelop.common.constants.SUBSCRIBE) getString(
+                        R.string.subscribed
+                    )
                     else getString(R.string.unsubscribed)
                 Snackbar.make(binding.recycler, text, LENGTH_SHORT).show()
             }

@@ -2,9 +2,9 @@ package com.biryulindevelop.redditron.presentation.screens.authorization
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.biryulindevelop.redditron.data.api.authentication.ApiToken
-import com.biryulindevelop.redditron.domain.state.LoadState
-import com.biryulindevelop.redditron.domain.storageservice.StorageService
+import com.biryulindevelop.data.api.authentication.ApiToken
+import com.biryulindevelop.domain.state.LoadState
+import com.biryulindevelop.domain.storageservice.StorageService
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow

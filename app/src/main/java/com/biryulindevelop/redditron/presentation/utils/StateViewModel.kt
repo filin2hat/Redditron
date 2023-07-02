@@ -1,7 +1,7 @@
 package com.biryulindevelop.redditron.presentation.utils
 
 import androidx.lifecycle.ViewModel
-import com.biryulindevelop.redditron.domain.state.LoadState
+import com.biryulindevelop.domain.state.LoadState
 import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow

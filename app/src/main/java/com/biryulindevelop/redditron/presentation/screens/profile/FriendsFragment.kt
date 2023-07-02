@@ -6,9 +6,9 @@ import android.view.View
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import com.biryulindevelop.domain.models.Friends
+import com.biryulindevelop.domain.state.LoadState
 import com.biryulindevelop.redditron.databinding.FragmentFriendsBinding
-import com.biryulindevelop.redditron.domain.models.Friends
-import com.biryulindevelop.redditron.domain.state.LoadState
 import com.biryulindevelop.redditron.presentation.delegates.friendsDelegate
 import com.biryulindevelop.redditron.presentation.utils.BaseFragment
 import com.hannesdorfmann.adapterdelegates4.ListDelegationAdapter
