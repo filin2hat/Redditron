@@ -12,6 +12,7 @@ import com.biryulindevelop.redditron.R
 import com.biryulindevelop.redditron.databinding.ActivityMainBinding
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import dagger.hilt.android.AndroidEntryPoint
+
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity(R.layout.activity_main) {
 
