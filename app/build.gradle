@@ -61,6 +61,9 @@ dependencies {
     implementation 'com.google.android.material:material:1.9.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
 
+    //viewbinding delegate
+    implementation 'com.github.kirich1409:viewbindingpropertydelegate-noreflection:1.5.9'
+
     //Lifecycle
     implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.6.1'
     implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.1'
