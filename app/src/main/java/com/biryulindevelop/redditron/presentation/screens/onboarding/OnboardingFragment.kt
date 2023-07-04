@@ -1,23 +1,22 @@
 package com.biryulindevelop.redditron.presentation.screens.onboarding
 
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
 import androidx.core.content.res.ResourcesCompat
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import by.kirich1409.viewbindingdelegate.viewBinding
 import com.biryulindevelop.redditron.R
 import com.biryulindevelop.redditron.databinding.FragmentOnboardingBinding
-import com.biryulindevelop.redditron.presentation.utils.BaseFragment
 import com.google.android.material.tabs.TabLayoutMediator
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class OnboardingFragment : BaseFragment<FragmentOnboardingBinding>() {
+class OnboardingFragment : Fragment(R.layout.fragment_onboarding) {
 
     private var mediator: TabLayoutMediator? = null
-
-    override fun initBinding(inflater: LayoutInflater) = FragmentOnboardingBinding.inflate(inflater)
-    private val viewModel by viewModels<OnboardingViewModel>()
+    private val binding by viewBinding(FragmentOnboardingBinding::bind)
+    private val viewModel: OnboardingViewModel by viewModels()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

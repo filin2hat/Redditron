@@ -1,27 +1,27 @@
 package com.biryulindevelop.redditron.presentation.screens.profile
 
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
 import androidx.appcompat.app.AlertDialog
 import androidx.core.view.isVisible
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import by.kirich1409.viewbindingdelegate.viewBinding
 import com.biryulindevelop.domain.models.Profile
 import com.biryulindevelop.domain.state.LoadState
 import com.biryulindevelop.redditron.R
 import com.biryulindevelop.redditron.databinding.FragmentProfileBinding
-import com.biryulindevelop.redditron.presentation.utils.BaseFragment
 import com.biryulindevelop.redditron.presentation.utils.loadImage
 import com.google.android.material.snackbar.BaseTransientBottomBar
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class ProfileFragment : BaseFragment<FragmentProfileBinding>() {
+class ProfileFragment : Fragment(R.layout.fragment_profile) {
 
-    override fun initBinding(inflater: LayoutInflater) = FragmentProfileBinding.inflate(inflater)
-    private val viewModel by viewModels<ProfileViewModel>()
+    private val binding by viewBinding(FragmentProfileBinding::bind)
+    private val viewModel: ProfileViewModel by viewModels()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

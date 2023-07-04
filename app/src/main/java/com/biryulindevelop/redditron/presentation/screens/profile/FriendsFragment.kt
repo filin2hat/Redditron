@@ -1,25 +1,25 @@
 package com.biryulindevelop.redditron.presentation.screens.profile
 
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
 import androidx.core.view.isVisible
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import by.kirich1409.viewbindingdelegate.viewBinding
 import com.biryulindevelop.domain.models.Friends
 import com.biryulindevelop.domain.state.LoadState
+import com.biryulindevelop.redditron.R
 import com.biryulindevelop.redditron.databinding.FragmentFriendsBinding
 import com.biryulindevelop.redditron.presentation.delegates.friendsDelegate
-import com.biryulindevelop.redditron.presentation.utils.BaseFragment
 import com.hannesdorfmann.adapterdelegates4.ListDelegationAdapter
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class FriendsFragment : BaseFragment<FragmentFriendsBinding>() {
+class FriendsFragment : Fragment(R.layout.fragment_friends) {
 
-    override fun initBinding(inflater: LayoutInflater) = FragmentFriendsBinding.inflate(inflater)
-    private val viewModel by viewModels<FriendsViewModel>()
-
+    private val binding by viewBinding(FragmentFriendsBinding::bind)
+    private val viewModel: FriendsViewModel by viewModels()
     private val adapter by lazy { ListDelegationAdapter(friendsDelegate()) }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

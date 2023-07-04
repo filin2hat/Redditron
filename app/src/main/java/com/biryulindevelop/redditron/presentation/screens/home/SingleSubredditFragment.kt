@@ -2,12 +2,13 @@ package com.biryulindevelop.redditron.presentation.screens.home
 
 import android.content.Intent
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
 import androidx.core.view.isVisible
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.navArgs
+import by.kirich1409.viewbindingdelegate.viewBinding
 import com.biryulindevelop.domain.ListItem
 import com.biryulindevelop.domain.models.Subreddit
 import com.biryulindevelop.domain.state.LoadState
@@ -15,18 +16,14 @@ import com.biryulindevelop.domain.tools.ClickableView
 import com.biryulindevelop.domain.tools.SubQuery
 import com.biryulindevelop.redditron.R
 import com.biryulindevelop.redditron.databinding.FragmentSingleSubredditBinding
-import com.biryulindevelop.redditron.presentation.utils.BaseFragment
 import com.google.android.material.snackbar.BaseTransientBottomBar.LENGTH_SHORT
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class SingleSubredditFragment : BaseFragment<FragmentSingleSubredditBinding>() {
-    override fun initBinding(inflater: LayoutInflater) =
-        FragmentSingleSubredditBinding.inflate(inflater)
-
-    private val viewModel by viewModels<SingleSubredditViewModel>()
-
+class SingleSubredditFragment : Fragment(R.layout.fragment_single_subreddit) {
+    private val binding by viewBinding(FragmentSingleSubredditBinding::bind)
+    private val viewModel: SingleSubredditViewModel by viewModels()
     private val adapter by lazy {
         HomePagedDataDelegationAdapter { subQuery: SubQuery, _: ListItem, clickableView: ClickableView ->
             onClick(subQuery, clickableView)

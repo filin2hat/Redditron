@@ -1,19 +1,19 @@
 package com.biryulindevelop.redditron.presentation.screens.home
 
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
 import androidx.appcompat.widget.SearchView
 import androidx.core.view.isVisible
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import by.kirich1409.viewbindingdelegate.viewBinding
 import com.biryulindevelop.domain.ListItem
 import com.biryulindevelop.domain.state.LoadState
 import com.biryulindevelop.domain.tools.ClickableView
 import com.biryulindevelop.domain.tools.SubQuery
 import com.biryulindevelop.redditron.R
 import com.biryulindevelop.redditron.databinding.FragmentHomeBinding
-import com.biryulindevelop.redditron.presentation.utils.BaseFragment
 import com.biryulindevelop.redditron.presentation.utils.setSelectedTabListener
 import com.google.android.material.snackbar.BaseTransientBottomBar.LENGTH_SHORT
 import com.google.android.material.snackbar.Snackbar
@@ -21,11 +21,10 @@ import com.google.android.material.tabs.TabLayout
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class HomeFragment : BaseFragment<FragmentHomeBinding>() {
+class HomeFragment : Fragment(R.layout.fragment_home) {
 
-    override fun initBinding(inflater: LayoutInflater) = FragmentHomeBinding.inflate(inflater)
-    private val viewModel by viewModels<HomeViewModel>()
-
+    private val binding by viewBinding(FragmentHomeBinding::bind)
+    private val viewModel: HomeViewModel by viewModels()
     private val adapter by lazy {
         HomePagedDataDelegationAdapter { subQuery: SubQuery, item: ListItem, clickableView: ClickableView ->
             onClick(subQuery, item, clickableView)
