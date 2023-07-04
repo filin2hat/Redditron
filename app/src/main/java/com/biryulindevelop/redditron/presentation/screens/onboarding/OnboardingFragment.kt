@@ -13,7 +13,8 @@ import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class OnboardingFragment : Fragment(R.layout.fragment_onboarding) {
-
+    //binding is based on library "ViewBindingPropertyDelegate", by Kirill Rozov aka kirich1409
+    //manages ViewBinding lifecycle and clears the reference to it to prevent memory leaks, etc...
     private var mediator: TabLayoutMediator? = null
     private val binding by viewBinding(FragmentOnboardingBinding::bind)
     private val viewModel: OnboardingViewModel by viewModels()

@@ -19,7 +19,8 @@ import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class ProfileFragment : Fragment(R.layout.fragment_profile) {
-
+    //binding is based on library "ViewBindingPropertyDelegate", by Kirill Rozov aka kirich1409
+    //manages ViewBinding lifecycle and clears the reference to it to prevent memory leaks, etc...
     private val binding by viewBinding(FragmentProfileBinding::bind)
     private val viewModel: ProfileViewModel by viewModels()
 

@@ -24,10 +24,10 @@ import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class UserFragment : Fragment(R.layout.fragment_user) {
-
+    //binding is based on library "ViewBindingPropertyDelegate", by Kirill Rozov aka kirich1409
+    //manages ViewBinding lifecycle and clears the reference to it to prevent memory leaks, etc...
     private val binding by viewBinding(FragmentUserBinding::bind)
     private val viewModel: UserViewModel by viewModels()
-
     private val adapter by lazy {
         ListDelegationAdapter(postsDelegate { subQuery: SubQuery, _: ListItem, clickableView: ClickableView ->
             onClick(subQuery, clickableView)

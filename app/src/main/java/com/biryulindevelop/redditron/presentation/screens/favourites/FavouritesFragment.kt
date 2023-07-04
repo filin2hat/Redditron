@@ -22,7 +22,8 @@ import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class FavouritesFragment : Fragment(R.layout.fragment_favourites) {
-
+    //binding is based on library "ViewBindingPropertyDelegate", by Kirill Rozov aka kirich1409
+    //manages ViewBinding lifecycle and clears the reference to it to prevent memory leaks, etc...
     private val binding by viewBinding(FragmentFavouritesBinding::bind)
     private val viewModel: FavouritesViewModel by viewModels()
     private val adapter by lazy {

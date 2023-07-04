@@ -17,7 +17,8 @@ import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class FriendsFragment : Fragment(R.layout.fragment_friends) {
-
+    //binding is based on library "ViewBindingPropertyDelegate", by Kirill Rozov aka kirich1409
+    //manages ViewBinding lifecycle and clears the reference to it to prevent memory leaks, etc...
     private val binding by viewBinding(FragmentFriendsBinding::bind)
     private val viewModel: FriendsViewModel by viewModels()
     private val adapter by lazy { ListDelegationAdapter(friendsDelegate()) }
