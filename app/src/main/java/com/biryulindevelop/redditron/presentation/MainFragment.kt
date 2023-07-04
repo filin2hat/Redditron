@@ -13,6 +13,7 @@ import javax.inject.Inject
 
 @AndroidEntryPoint
 class MainFragment : Fragment(R.layout.fragment_main) {
+
     @Inject
     lateinit var storageService: StorageService
 
