@@ -1,4 +1,4 @@
-package com.biryulindevelop.redditron.presentation.screens.profile
+package com.biryulindevelop.redditron.presentation.screens.friends
 
 import android.annotation.SuppressLint
 import android.os.Bundle
@@ -15,7 +15,6 @@ import com.biryulindevelop.domain.models.Friends
 import com.biryulindevelop.domain.state.LoadState
 import com.biryulindevelop.redditron.R
 import com.biryulindevelop.redditron.databinding.FragmentFriendsBinding
-import com.biryulindevelop.redditron.presentation.delegates.friendsDelegate
 import com.hannesdorfmann.adapterdelegates4.ListDelegationAdapter
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch

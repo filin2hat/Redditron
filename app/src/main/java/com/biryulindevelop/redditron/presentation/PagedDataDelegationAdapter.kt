@@ -1,4 +1,4 @@
-package com.biryulindevelop.redditron.presentation.screens.home
+package com.biryulindevelop.redditron.presentation
 
 import android.view.ViewGroup
 import androidx.paging.PagingDataAdapter

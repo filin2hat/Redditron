@@ -17,7 +17,7 @@ import com.biryulindevelop.domain.tools.ClickableView
 import com.biryulindevelop.domain.tools.SubQuery
 import com.biryulindevelop.redditron.R
 import com.biryulindevelop.redditron.databinding.FragmentUserBinding
-import com.biryulindevelop.redditron.presentation.delegates.postsDelegate
+import com.biryulindevelop.redditron.presentation.screens.home.postsDelegate
 import com.biryulindevelop.redditron.presentation.utils.loadImage
 import com.google.android.material.snackbar.BaseTransientBottomBar.LENGTH_SHORT
 import com.google.android.material.snackbar.Snackbar

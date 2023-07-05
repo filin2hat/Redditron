@@ -5,6 +5,7 @@ import android.view.View
 import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.biryulindevelop.redditron.R
 import com.biryulindevelop.redditron.databinding.FragmentOnboardingBinding
@@ -40,11 +41,13 @@ class OnboardingFragment : Fragment(R.layout.fragment_onboarding) {
             ResourcesCompat.getDrawable(resources, R.drawable.onb_image3, null)
                 ?: error("lost onboarding image3")
         )
-        val viewPagerAdapter = ViewPagerAdapter(onboardingTextsArray1, onboardingTextsArray2, onboardingImages)
+        val viewPagerAdapter =
+            ViewPagerAdapter(onboardingTextsArray1, onboardingTextsArray2, onboardingImages)
         binding.viewPager.adapter = viewPagerAdapter
 
         val lastPageIndex = onboardingTextsArray1.lastIndex
-        val changeButtonTextOnPageChange = ChangeButtonTextOnPageChange(binding.skipButton, requireContext(), lastPageIndex)
+        val changeButtonTextOnPageChange =
+            ChangeButtonTextOnPageChange(binding.skipButton, requireContext(), lastPageIndex)
         binding.viewPager.registerOnPageChangeCallback(changeButtonTextOnPageChange)
     }
 
@@ -57,7 +60,9 @@ class OnboardingFragment : Fragment(R.layout.fragment_onboarding) {
         with(binding.skipButton) {
             background = null
             setOnClickListener {
-                viewModel.navigateToAuth(this@OnboardingFragment)
+                findNavController().navigate(
+                    R.id.action_navigation_onboarding_to_navigation_auth
+                )
             }
         }
     }

@@ -1,4 +1,4 @@
-package com.biryulindevelop.redditron.presentation.screens.profile
+package com.biryulindevelop.redditron.presentation.screens.friends
 
 import androidx.lifecycle.viewModelScope
 import com.biryulindevelop.domain.repository.ProfileRemoteRepository

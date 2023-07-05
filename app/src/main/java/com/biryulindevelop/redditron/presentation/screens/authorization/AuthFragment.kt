@@ -13,6 +13,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import by.kirich1409.viewbindingdelegate.viewBinding
+import com.biryulindevelop.common.constants.REQUEST
 import com.biryulindevelop.domain.state.LoadState
 import com.biryulindevelop.redditron.R
 import com.biryulindevelop.redditron.databinding.FragmentAuthBinding
@@ -37,7 +38,8 @@ class AuthFragment : Fragment(R.layout.fragment_auth) {
 
     private fun setupAuthorizationButton() {
         binding.authButton.setOnClickListener {
-            val intent = Intent(Intent.ACTION_VIEW, Uri.parse(com.biryulindevelop.common.constants.REQUEST))
+            val intent =
+                Intent(Intent.ACTION_VIEW, Uri.parse(REQUEST))
             startActivity(intent)
         }
     }
@@ -51,11 +53,13 @@ class AuthFragment : Fragment(R.layout.fragment_auth) {
                         textIsVisible = false,
                         progressIsVisible = false
                     )
+
                     LoadState.Loading -> setViewsStates(
                         buttonIsEnabled = false,
                         textIsVisible = false,
                         progressIsVisible = true
                     )
+
                     is LoadState.Content -> {
                         setViewsStates(
                             buttonIsEnabled = false,
@@ -64,6 +68,7 @@ class AuthFragment : Fragment(R.layout.fragment_auth) {
                         )
                         findNavController().navigate(R.id.action_navigation_auth_to_navigation_home)
                     }
+
                     is LoadState.Error -> {
                         setViewsStates(
                             buttonIsEnabled = true,

@@ -9,8 +9,11 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.navigation.fragment.findNavController
 import by.kirich1409.viewbindingdelegate.viewBinding
+import com.biryulindevelop.common.constants.SUBSCRIBE
 import com.biryulindevelop.domain.ListItem
+import com.biryulindevelop.domain.models.Subreddit
 import com.biryulindevelop.domain.state.LoadState
 import com.biryulindevelop.domain.tools.ClickableView
 import com.biryulindevelop.domain.tools.SubQuery
@@ -47,9 +50,9 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
     private fun loadContent() {
         binding.recyclerView.adapter = adapter
         viewLifecycleOwner.lifecycleScope.launch {
-           repeatOnLifecycle(Lifecycle.State.CREATED) {
-               viewModel.subredditsList.collect { pagingData -> adapter.submitData(pagingData) }
-           }
+            repeatOnLifecycle(Lifecycle.State.CREATED) {
+                viewModel.subredditsList.collect { pagingData -> adapter.submitData(pagingData) }
+            }
         }
     }
 
@@ -110,11 +113,16 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
 
     private fun onClick(subQuery: SubQuery, item: ListItem, clickableView: ClickableView) {
         when (clickableView) {
-            ClickableView.SUBREDDIT -> viewModel.navigateToSingleSubreddit(this, item)
+            ClickableView.SUBREDDIT -> findNavController().navigate(
+                HomeFragmentDirections.actionNavigationHomeToNavigationSingleSubredditFragment(
+                    (item as Subreddit).namePrefixed
+                )
+            )
+
             ClickableView.SUBSCRIBE -> {
                 viewModel.subscribe(subQuery)
                 val text = getString(
-                    if (subQuery.action == com.biryulindevelop.common.constants.SUBSCRIBE) R.string.subscribed
+                    if (subQuery.action == SUBSCRIBE) R.string.subscribed
                     else R.string.unsubscribed
                 )
                 Snackbar.make(binding.recyclerView, text, LENGTH_SHORT).show()

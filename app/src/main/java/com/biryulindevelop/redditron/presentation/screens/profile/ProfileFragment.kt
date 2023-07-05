@@ -95,8 +95,7 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
             .setMessage(R.string.logout_message)
             .setPositiveButton(R.string.yes) { _, _ ->
                 viewModel.wipeToken()
-                findNavController()
-                    .navigate(R.id.action_navigation_profile_to_navigation_auth)
+                findNavController().navigate(R.id.action_navigation_profile_to_navigation_auth)
             }
             .setNegativeButton(R.string.no) { _, _ -> }
             .show()

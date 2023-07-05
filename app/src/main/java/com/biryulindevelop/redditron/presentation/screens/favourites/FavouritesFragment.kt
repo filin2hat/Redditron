@@ -8,9 +8,12 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.navigation.fragment.findNavController
 import androidx.paging.LoadState
 import by.kirich1409.viewbindingdelegate.viewBinding
+import com.biryulindevelop.common.constants.SUBSCRIBE
 import com.biryulindevelop.domain.ListItem
+import com.biryulindevelop.domain.models.Subreddit
 import com.biryulindevelop.domain.tools.ClickableView
 import com.biryulindevelop.domain.tools.SubQuery
 import com.biryulindevelop.redditron.R
@@ -89,7 +92,7 @@ class FavouritesFragment : Fragment(R.layout.fragment_favourites) {
 
             ClickableView.SUBSCRIBE -> {
                 viewModel.subscribe(subQuery)
-                val text = if (subQuery.action == com.biryulindevelop.common.constants.SUBSCRIBE) {
+                val text = if (subQuery.action == SUBSCRIBE) {
                     getString(R.string.subscribed)
                 } else {
                     getString(R.string.unsubscribed)
@@ -98,8 +101,17 @@ class FavouritesFragment : Fragment(R.layout.fragment_favourites) {
                     .show()
             }
 
-            ClickableView.USER -> viewModel.navigateToUser(this, subQuery.name)
-            ClickableView.SUBREDDIT -> viewModel.navigateToSingleSubreddit(this, item)
+            ClickableView.USER -> findNavController().navigate(
+                FavouritesFragmentDirections.actionNavigationFavouritesToNavigationUser(
+                    subQuery.name
+                )
+            )
+
+            ClickableView.SUBREDDIT -> findNavController().navigate(
+                FavouritesFragmentDirections.actionNavigationFavouritesToNavigationSingleSubredditFragment(
+                    (item as Subreddit).namePrefixed
+                )
+            )
         }
     }
 }

@@ -1,4 +1,4 @@
-package com.biryulindevelop.redditron.presentation.screens.home
+package com.biryulindevelop.redditron.presentation.screens.subreddit
 
 import android.content.Intent
 import android.os.Bundle
@@ -9,8 +9,11 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import by.kirich1409.viewbindingdelegate.viewBinding
+import com.biryulindevelop.common.constants.SUBSCRIBE
+import com.biryulindevelop.common.constants.UNSUBSCRIBE
 import com.biryulindevelop.domain.ListItem
 import com.biryulindevelop.domain.models.Subreddit
 import com.biryulindevelop.domain.state.LoadState
@@ -18,6 +21,7 @@ import com.biryulindevelop.domain.tools.ClickableView
 import com.biryulindevelop.domain.tools.SubQuery
 import com.biryulindevelop.redditron.R
 import com.biryulindevelop.redditron.databinding.FragmentSingleSubredditBinding
+import com.biryulindevelop.redditron.presentation.screens.home.HomePagedDataDelegationAdapter
 import com.google.android.material.snackbar.BaseTransientBottomBar.LENGTH_SHORT
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
@@ -123,8 +127,7 @@ class SingleSubredditFragment : Fragment(R.layout.fragment_single_subreddit) {
         with(binding) {
             subscribeButton.setOnClickListener {
                 subscribeButton.isSelected = !subscribeButton.isSelected
-                val action =
-                    if (!subscribeButton.isSelected) com.biryulindevelop.common.constants.UNSUBSCRIBE else com.biryulindevelop.common.constants.SUBSCRIBE
+                val action = if (!subscribeButton.isSelected) UNSUBSCRIBE else SUBSCRIBE
                 onClick(SubQuery(name = data.name, action = action), ClickableView.SUBSCRIBE)
             }
         }
@@ -139,29 +142,40 @@ class SingleSubredditFragment : Fragment(R.layout.fragment_single_subreddit) {
 
     private fun onClick(subQuery: SubQuery, clickableView: ClickableView) {
         when (clickableView) {
-            ClickableView.SAVE -> viewModel.savePost(postName = subQuery.name)
-            ClickableView.UNSAVE -> viewModel.unsavePost(postName = subQuery.name)
+            ClickableView.SAVE ->
+                viewModel.savePost(postName = subQuery.name)
+
+            ClickableView.UNSAVE ->
+                viewModel.unsavePost(postName = subQuery.name)
+
             ClickableView.VOTE ->
                 viewModel.votePost(voteDirection = subQuery.voteDirection, postName = subQuery.name)
 
             ClickableView.SUBSCRIBE -> {
                 viewModel.subscribe(subQuery)
                 val text =
-                    if (subQuery.action == com.biryulindevelop.common.constants.SUBSCRIBE) getString(
+                    if (subQuery.action == SUBSCRIBE) getString(
                         R.string.subscribed
                     )
                     else getString(R.string.unsubscribed)
                 Snackbar.make(binding.recycler, text, LENGTH_SHORT).show()
             }
 
-            ClickableView.USER -> viewModel.navigateToUser(this, subQuery.name)
+            ClickableView.USER -> findNavController().navigate(
+                SingleSubredditFragmentDirections.actionNavigationSingleSubredditToNavigationUser(
+                    subQuery.name
+                )
+            )
+
             else -> {}
         }
     }
 
     private fun setToolbarBackButton() {
         binding.buttonBack.setOnClickListener {
-            viewModel.navigateBack(this)
+            findNavController().navigate(
+                R.id.action_navigation_single_subreddit_to_navigation_home
+            )
         }
     }
 }

@@ -69,10 +69,13 @@ class SubredditsRemoteRepositoryImpl @Inject constructor(
 
     override suspend fun getSinglePost(url: String): List<ListItem> {
         val list = mutableListOf<ListItem>()
-        apiPost.getSinglePost(url).forEach { responseItem ->
+        val responseItems = apiPost.getSinglePost(url)
+        responseItems.forEach { responseItem ->
             responseItem.data.children.forEach { child ->
-                if (child is PostDto) list.add(child.toPost())
-                else if (child is CommentDto) list.add(child.toComment())
+                when (child) {
+                    is PostDto -> list.add(child.toPost())
+                    is CommentDto -> list.add(child.toComment())
+                }
             }
         }
         return list.toList()

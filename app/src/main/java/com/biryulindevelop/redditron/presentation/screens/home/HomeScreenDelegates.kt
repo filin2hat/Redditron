@@ -1,4 +1,4 @@
-package com.biryulindevelop.redditron.presentation.delegates
+package com.biryulindevelop.redditron.presentation.screens.home
 
 import android.view.View
 import com.biryulindevelop.common.constants.SUBSCRIBE
@@ -15,12 +15,13 @@ import com.biryulindevelop.redditron.presentation.utils.loadCircleImage
 import com.biryulindevelop.redditron.presentation.utils.loadImage
 import com.google.android.material.snackbar.BaseTransientBottomBar.LENGTH_SHORT
 import com.google.android.material.snackbar.Snackbar
+import com.hannesdorfmann.adapterdelegates4.AdapterDelegate
 import com.hannesdorfmann.adapterdelegates4.dsl.AdapterDelegateViewBindingViewHolder
 import com.hannesdorfmann.adapterdelegates4.dsl.adapterDelegateViewBinding
 
 fun subredditsDelegate(
     onClick: (subQuery: SubQuery, item: ListItem, clickableView: ClickableView) -> Unit,
-) = adapterDelegateViewBinding<Subreddit, ListItem, ItemSubredditBinding>(
+): AdapterDelegate<List<ListItem>> = adapterDelegateViewBinding<Subreddit, ListItem, ItemSubredditBinding>(
     { inflater, root -> ItemSubredditBinding.inflate(inflater, root, false) }
 ) {
     with(binding) {
@@ -45,7 +46,7 @@ fun subredditsDelegate(
 
 fun postsDelegate(
     onClick: (subQuery: SubQuery, item: ListItem, clickableView: ClickableView) -> Unit,
-) = adapterDelegateViewBinding<Post, ListItem, ItemPostImageBinding>(
+): AdapterDelegate<List<ListItem>> = adapterDelegateViewBinding<Post, ListItem, ItemPostImageBinding>(
     { inflater, root -> ItemPostImageBinding.inflate(inflater, root, false) }
 ) {
     with(binding) {

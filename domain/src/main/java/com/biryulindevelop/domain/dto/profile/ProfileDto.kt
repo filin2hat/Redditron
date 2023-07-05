@@ -13,16 +13,11 @@ class ProfileDto(
     @Json(name = "subreddit")
     var more_infos: UserDataSubDto?,
     var total_karma: Int?,
-
-//    @SerializedName("created_utc")
-//    var account_creation_date: Long?
 ) {
     @JsonClass(generateAdapter = true)
     class UserDataSubDto(
         var subscribers: Int?,
         @Json(name = "title")
         var title: String?
-//    @SerializedName("public_description")
-//    var description: String?
     )
 }

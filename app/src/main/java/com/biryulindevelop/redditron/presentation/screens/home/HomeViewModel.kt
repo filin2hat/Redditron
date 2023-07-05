@@ -1,15 +1,12 @@
 package com.biryulindevelop.redditron.presentation.screens.home
 
-import androidx.fragment.app.Fragment
 import androidx.lifecycle.viewModelScope
-import androidx.navigation.fragment.findNavController
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
 import com.biryulindevelop.data.repository.PagingSource
 import com.biryulindevelop.domain.ListItem
-import com.biryulindevelop.domain.models.Subreddit
 import com.biryulindevelop.domain.repository.SubredditsRemoteRepository
 import com.biryulindevelop.domain.state.LoadState
 import com.biryulindevelop.domain.tools.ListTypes
@@ -70,14 +67,6 @@ class HomeViewModel @Inject constructor(
         viewModelScope.launch(Dispatchers.IO + handler) {
             repository.subscribeOnSubreddit(subQuery.action, subQuery.name)
         }
-    }
-
-    fun navigateToSingleSubreddit(fragment: Fragment, item: ListItem) {
-        fragment.findNavController().navigate(
-            HomeFragmentDirections.actionNavigationHomeToNavigationSingleSubredditFragment(
-                (item as Subreddit).namePrefixed
-            )
-        )
     }
 
     fun onSearchButtonClick(text: String) {

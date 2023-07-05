@@ -1,8 +1,6 @@
-package com.biryulindevelop.redditron.presentation.screens.home
+package com.biryulindevelop.redditron.presentation.screens.subreddit
 
-import androidx.fragment.app.Fragment
 import androidx.lifecycle.viewModelScope
-import androidx.navigation.fragment.findNavController
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
@@ -20,8 +18,9 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class SingleSubredditViewModel @Inject constructor(private val repository: SubredditsRemoteRepository) :
-    StateViewModel() {
+class SingleSubredditViewModel @Inject constructor(
+    private val repository: SubredditsRemoteRepository
+) : StateViewModel() {
 
     fun getPostsList(name: String?): Flow<PagingData<ListItem>> = Pager(
         config = PagingConfig(pageSize = 10),
@@ -58,17 +57,4 @@ class SingleSubredditViewModel @Inject constructor(private val repository: Subre
             repository.unsavePost(postName)
         }
     }
-
-    fun navigateToUser(fragment: Fragment, name: String) {
-        fragment.findNavController().navigate(
-            SingleSubredditFragmentDirections.actionNavigationSingleSubredditToNavigationUser(name)
-        )
-    }
-
-    fun navigateBack(fragment: Fragment) {
-        fragment.findNavController().navigate(
-            SingleSubredditFragmentDirections.actionNavigationSingleSubredditToNavigationHome()
-        )
-    }
-
 }

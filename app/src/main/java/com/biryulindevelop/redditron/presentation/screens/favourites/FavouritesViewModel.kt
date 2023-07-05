@@ -1,15 +1,12 @@
 package com.biryulindevelop.redditron.presentation.screens.favourites
 
-import androidx.fragment.app.Fragment
 import androidx.lifecycle.viewModelScope
-import androidx.navigation.fragment.findNavController
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
 import com.biryulindevelop.data.repository.PagingSource
 import com.biryulindevelop.domain.ListItem
-import com.biryulindevelop.domain.models.Subreddit
 import com.biryulindevelop.domain.repository.SubredditsRemoteRepository
 import com.biryulindevelop.domain.tools.Change
 import com.biryulindevelop.domain.tools.ListTypes
@@ -86,20 +83,6 @@ class FavouritesViewModel @Inject constructor(
         viewModelScope.launch(Dispatchers.IO + handler) {
             repository.unsavePost(postName)
         }
-    }
-
-    fun navigateToSingleSubreddit(fragment: Fragment, item: ListItem) {
-        fragment.findNavController().navigate(
-            FavouritesFragmentDirections.actionNavigationFavouritesToNavigationSingleSubredditFragment(
-                (item as Subreddit).namePrefixed
-            )
-        )
-    }
-
-    fun navigateToUser(fragment: Fragment, name: String) {
-        fragment.findNavController().navigate(
-            FavouritesFragmentDirections.actionNavigationFavouritesToNavigationUser(name)
-        )
     }
 
     companion object {

@@ -17,7 +17,7 @@ class AuthViewModel @Inject constructor(
 ) : StateViewModel() {
 
     fun createToken(code: String) {
-        if (code != PLUG) {
+        if (code != "") {
             viewModelScope.launch(Dispatchers.IO) {
                 try {
                     loadState.value = LoadState.Loading
@@ -28,9 +28,5 @@ class AuthViewModel @Inject constructor(
                 }
             }
         }
-    }
-
-    companion object {
-        const val PLUG = ""
     }
 }

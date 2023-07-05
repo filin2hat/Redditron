@@ -80,7 +80,7 @@
 
     <fragment
         android:id="@+id/navigation_friends"
-        android:name="com.biryulindevelop.redditron.presentation.screens.profile.FriendsFragment"
+        android:name="com.biryulindevelop.redditron.presentation.screens.friends.FriendsFragment"
         tools:layout="@layout/fragment_friends">
         <action
             android:id="@+id/action_navigation_friends_to_navigation_profile"
@@ -113,7 +113,7 @@
 
     <fragment
         android:id="@+id/navigation_single_subreddit_fragment"
-        android:name="com.biryulindevelop.redditron.presentation.screens.home.SingleSubredditFragment"
+        android:name="com.biryulindevelop.redditron.presentation.screens.subreddit.SingleSubredditFragment"
         android:label="Subreddit Description"
         tools:layout="@layout/fragment_single_subreddit">
         <argument

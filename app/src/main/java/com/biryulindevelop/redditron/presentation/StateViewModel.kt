@@ -18,6 +18,6 @@ abstract class StateViewModel : ViewModel() {
     }
 
     protected val query = FavoritesQuery()
-    protected val thingFlow = MutableStateFlow(Change(query))
 
+    protected val thingFlow = MutableStateFlow(Change(query))
 }
