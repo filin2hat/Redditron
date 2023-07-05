@@ -30,38 +30,32 @@ class AuthFragment : Fragment(R.layout.fragment_auth) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        setAuthorizationButton()
-        updateUiOnLoadStateChange()
+        setupAuthorizationButton()
+        observeLoadState()
         viewModel.createToken(args.code)
     }
 
-    private fun setAuthorizationButton() {
+    private fun setupAuthorizationButton() {
         binding.authButton.setOnClickListener {
-            val intent =
-                Intent(Intent.ACTION_VIEW, Uri.parse(com.biryulindevelop.common.constants.REQUEST))
+            val intent = Intent(Intent.ACTION_VIEW, Uri.parse(com.biryulindevelop.common.constants.REQUEST))
             startActivity(intent)
         }
     }
 
-    private fun updateUiOnLoadStateChange() {
+    private fun observeLoadState() {
         viewLifecycleOwner.lifecycleScope.launch {
             viewModel.state.collect { state ->
                 when (state) {
-                    LoadState.NotStartedYet ->
-                        setViewsStates(
-                            buttonIsEnabled = true,
-                            textIsVisible = false,
-                            progressIsVisible = false
-                        )
-
-                    LoadState.Loading ->
-                        setViewsStates(
-                            buttonIsEnabled = false,
-                            textIsVisible = false,
-                            progressIsVisible = true
-                        )
-
+                    LoadState.NotStartedYet -> setViewsStates(
+                        buttonIsEnabled = true,
+                        textIsVisible = false,
+                        progressIsVisible = false
+                    )
+                    LoadState.Loading -> setViewsStates(
+                        buttonIsEnabled = false,
+                        textIsVisible = false,
+                        progressIsVisible = true
+                    )
                     is LoadState.Content -> {
                         setViewsStates(
                             buttonIsEnabled = false,
@@ -70,7 +64,6 @@ class AuthFragment : Fragment(R.layout.fragment_auth) {
                         )
                         findNavController().navigate(R.id.action_navigation_auth_to_navigation_home)
                     }
-
                     is LoadState.Error -> {
                         setViewsStates(
                             buttonIsEnabled = true,
@@ -90,8 +83,10 @@ class AuthFragment : Fragment(R.layout.fragment_auth) {
         textIsVisible: Boolean,
         progressIsVisible: Boolean
     ) {
-        binding.authButton.isEnabled = buttonIsEnabled
-        binding.text.isVisible = textIsVisible
-        binding.progressBar.isVisible = progressIsVisible
+        with(binding) {
+            authButton.isEnabled = buttonIsEnabled
+            text.isVisible = textIsVisible
+            progressBar.isVisible = progressIsVisible
+        }
     }
 }

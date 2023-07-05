@@ -17,18 +17,17 @@ class AuthViewModel @Inject constructor(
 ) : StateViewModel() {
 
     fun createToken(code: String) {
-        if (code != PLUG)
+        if (code != PLUG) {
             viewModelScope.launch(Dispatchers.IO) {
-                loadState.value = LoadState.Loading
                 try {
-                    storageService.saveEncryptedToken(
-                        apiToken.getToken(code = code).access_token
-                    )
+                    loadState.value = LoadState.Loading
+                    storageService.saveEncryptedToken(apiToken.getToken(code = code).access_token)
                     loadState.value = LoadState.Content()
                 } catch (e: Exception) {
                     loadState.value = LoadState.Error(message = e.message.toString())
                 }
             }
+        }
     }
 
     companion object {
