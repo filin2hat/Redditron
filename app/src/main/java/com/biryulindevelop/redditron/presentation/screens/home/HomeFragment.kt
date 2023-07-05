@@ -20,10 +20,11 @@ import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.tabs.TabLayout
 import dagger.hilt.android.AndroidEntryPoint
 
+/** binding is based on library "ViewBindingPropertyDelegate", by Kirill Rozov aka kirich1409
+more info:  https://github.com/androidbroadcast/ViewBindingPropertyDelegate */
+
 @AndroidEntryPoint
 class HomeFragment : Fragment(R.layout.fragment_home) {
-    //binding is based on library "ViewBindingPropertyDelegate", by Kirill Rozov aka kirich1409
-    //manages ViewBinding lifecycle and clears the reference to it to prevent memory leaks, etc...
     private val binding by viewBinding(FragmentHomeBinding::bind)
     private val viewModel: HomeViewModel by viewModels()
     private val adapter by lazy {
@@ -56,25 +57,27 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
     }
 
     private fun updateUi(state: LoadState) {
-        when (state) {
-            LoadState.NotStartedYet -> {}
-            LoadState.Loading -> {
-                binding.common.progressBar.isVisible = true
-                binding.common.error.isVisible = false
-                binding.recyclerView.isVisible = false
-            }
+        with(binding) {
+            when (state) {
+                LoadState.NotStartedYet -> {}
+                LoadState.Loading -> {
+                    common.progressBar.isVisible = true
+                    common.error.isVisible = false
+                    recyclerView.isVisible = false
+                }
 
-            is LoadState.Content -> {
-                binding.common.progressBar.isVisible = false
-                binding.common.error.isVisible = false
-                binding.recyclerView.isVisible = true
+                is LoadState.Content -> {
+                    common.progressBar.isVisible = false
+                    common.error.isVisible = false
+                    recyclerView.isVisible = true
 
-            }
+                }
 
-            is LoadState.Error -> {
-                binding.common.progressBar.isVisible = false
-                binding.common.error.isVisible = true
-                binding.recyclerView.isVisible = false
+                is LoadState.Error -> {
+                    common.progressBar.isVisible = false
+                    common.error.isVisible = true
+                    recyclerView.isVisible = false
+                }
             }
         }
     }

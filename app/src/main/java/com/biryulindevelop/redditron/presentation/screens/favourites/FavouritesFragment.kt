@@ -20,10 +20,11 @@ import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.tabs.TabLayout
 import dagger.hilt.android.AndroidEntryPoint
 
+/** binding is based on library "ViewBindingPropertyDelegate", by Kirill Rozov aka kirich1409
+more info:  https://github.com/androidbroadcast/ViewBindingPropertyDelegate */
+
 @AndroidEntryPoint
 class FavouritesFragment : Fragment(R.layout.fragment_favourites) {
-    //binding is based on library "ViewBindingPropertyDelegate", by Kirill Rozov aka kirich1409
-    //manages ViewBinding lifecycle and clears the reference to it to prevent memory leaks, etc...
     private val binding by viewBinding(FragmentFavouritesBinding::bind)
     private val viewModel: FavouritesViewModel by viewModels()
     private val adapter by lazy {
@@ -34,7 +35,6 @@ class FavouritesFragment : Fragment(R.layout.fragment_favourites) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         loadContent()
         tabLayoutSelectedListener(binding.toggleType, false)
         tabLayoutSelectedListener(binding.toggleSource, true)
@@ -53,12 +53,14 @@ class FavouritesFragment : Fragment(R.layout.fragment_favourites) {
     private fun loadStateItemsObserve() {
         viewLifecycleOwner.lifecycleScope.launchWhenStarted {
             adapter.loadStateFlow.collect { state ->
-                binding.common.progressBar.isVisible =
-                    state.refresh is LoadState.Loading || state.append is LoadState.Loading
-                binding.common.error.isVisible =
-                    state.refresh is LoadState.Error || state.append is LoadState.Error || state.prepend is LoadState.Error
-                binding.noSavedPosts.isVisible =
-                    state.refresh is LoadState.NotLoading && adapter.itemCount == 0
+                with(binding) {
+                    common.progressBar.isVisible =
+                        state.refresh is LoadState.Loading || state.append is LoadState.Loading
+                    common.error.isVisible =
+                        state.refresh is LoadState.Error || state.append is LoadState.Error || state.prepend is LoadState.Error
+                    noSavedPosts.isVisible =
+                        state.refresh is LoadState.NotLoading && adapter.itemCount == 0
+                }
             }
         }
     }

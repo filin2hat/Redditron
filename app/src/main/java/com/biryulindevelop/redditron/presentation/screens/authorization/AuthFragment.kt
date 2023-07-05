@@ -19,10 +19,11 @@ import com.biryulindevelop.redditron.databinding.FragmentAuthBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
+/** binding is based on library "ViewBindingPropertyDelegate", by Kirill Rozov aka kirich1409
+more info:  https://github.com/androidbroadcast/ViewBindingPropertyDelegate */
+
 @AndroidEntryPoint
 class AuthFragment : Fragment(R.layout.fragment_auth) {
-    //binding is based on library "ViewBindingPropertyDelegate", by Kirill Rozov aka kirich1409
-    //manages ViewBinding lifecycle and clears the reference to it to prevent memory leaks, etc...
     private val binding by viewBinding(FragmentAuthBinding::bind)
     private val viewModel: AuthViewModel by viewModels()
     private val args: AuthFragmentArgs by navArgs()

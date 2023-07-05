@@ -15,10 +15,11 @@ import com.biryulindevelop.redditron.presentation.delegates.friendsDelegate
 import com.hannesdorfmann.adapterdelegates4.ListDelegationAdapter
 import dagger.hilt.android.AndroidEntryPoint
 
+/** binding is based on library "ViewBindingPropertyDelegate", by Kirill Rozov aka kirich1409
+more info:  https://github.com/androidbroadcast/ViewBindingPropertyDelegate */
+
 @AndroidEntryPoint
 class FriendsFragment : Fragment(R.layout.fragment_friends) {
-    //binding is based on library "ViewBindingPropertyDelegate", by Kirill Rozov aka kirich1409
-    //manages ViewBinding lifecycle and clears the reference to it to prevent memory leaks, etc...
     private val binding by viewBinding(FragmentFriendsBinding::bind)
     private val viewModel: FriendsViewModel by viewModels()
     private val adapter by lazy { ListDelegationAdapter(friendsDelegate()) }
@@ -38,25 +39,27 @@ class FriendsFragment : Fragment(R.layout.fragment_friends) {
     }
 
     private fun updateUi(state: LoadState) {
-        when (state) {
-            LoadState.NotStartedYet -> {}
-            LoadState.Loading -> {
-                binding.common.progressBar.isVisible = true
-                binding.common.error.isVisible = false
-                binding.recyclerView.isVisible = false
-            }
+        with(binding) {
+            when (state) {
+                LoadState.NotStartedYet -> {}
+                LoadState.Loading -> {
+                    common.progressBar.isVisible = true
+                    common.error.isVisible = false
+                    recyclerView.isVisible = false
+                }
 
-            is LoadState.Content -> {
-                binding.common.progressBar.isVisible = false
-                binding.common.error.isVisible = false
-                binding.recyclerView.isVisible = true
-                loadContent(state.data as Friends)
-            }
+                is LoadState.Content -> {
+                    common.progressBar.isVisible = false
+                    common.error.isVisible = false
+                    recyclerView.isVisible = true
+                    loadContent(state.data as Friends)
+                }
 
-            is LoadState.Error -> {
-                binding.common.progressBar.isVisible = false
-                binding.common.error.isVisible = true
-                binding.recyclerView.isVisible = false
+                is LoadState.Error -> {
+                    common.progressBar.isVisible = false
+                    common.error.isVisible = true
+                    recyclerView.isVisible = false
+                }
             }
         }
     }

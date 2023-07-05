@@ -20,10 +20,11 @@ import com.google.android.material.snackbar.BaseTransientBottomBar.LENGTH_SHORT
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 
+/** binding is based on library "ViewBindingPropertyDelegate", by Kirill Rozov aka kirich1409
+more info:  https://github.com/androidbroadcast/ViewBindingPropertyDelegate */
+
 @AndroidEntryPoint
 class SingleSubredditFragment : Fragment(R.layout.fragment_single_subreddit) {
-    //binding is based on library "ViewBindingPropertyDelegate", by Kirill Rozov aka kirich1409
-    //manages ViewBinding lifecycle and clears the reference to it to prevent memory leaks, etc...
     private val binding by viewBinding(FragmentSingleSubredditBinding::bind)
     private val viewModel: SingleSubredditViewModel by viewModels()
     private val adapter by lazy {
@@ -59,46 +60,52 @@ class SingleSubredditFragment : Fragment(R.layout.fragment_single_subreddit) {
     }
 
     private fun updateUi(state: LoadState) {
-        when (state) {
-            LoadState.NotStartedYet -> {}
-            LoadState.Loading -> {
-                binding.recycler.isVisible = false
-                binding.common.progressBar.isVisible = true
-                binding.common.error.isVisible = false
-            }
+        with(binding) {
+            when (state) {
+                LoadState.NotStartedYet -> {}
+                LoadState.Loading -> {
+                    recycler.isVisible = false
+                    common.progressBar.isVisible = true
+                    common.error.isVisible = false
+                }
 
-            is LoadState.Error -> {
-                binding.recycler.isVisible = false
-                binding.common.progressBar.isVisible = false
-                binding.common.error.isVisible = true
-            }
+                is LoadState.Error -> {
+                    recycler.isVisible = false
+                    common.progressBar.isVisible = false
+                    common.error.isVisible = true
+                }
 
-            is LoadState.Content -> {
-                binding.recycler.isVisible = true
-                binding.common.progressBar.isVisible = false
-                binding.common.error.isVisible = false
-                val data = state.data as Subreddit
-                loadSubredditDescription(data)
-                setExpandButtonClick()
-                setShareButtonClick(data)
-                binding.subscribeButton.isSelected = data.isUserSubscriber == true
-                setSubscribeButtonClick(data)
+                is LoadState.Content -> {
+                    recycler.isVisible = true
+                    common.progressBar.isVisible = false
+                    common.error.isVisible = false
+                    val data = state.data as Subreddit
+                    loadSubredditDescription(data)
+                    setExpandButtonClick()
+                    setShareButtonClick(data)
+                    subscribeButton.isSelected = data.isUserSubscriber == true
+                    setSubscribeButtonClick(data)
+                }
             }
         }
     }
 
     private fun loadSubredditDescription(subreddit: Subreddit) {
-        binding.subredditName.text = subreddit.namePrefixed
-        binding.subscribers.text = getString(R.string.subscribers, subreddit.subscribers ?: 0)
-        binding.subredditDescription.text = subreddit.description
+        with(binding) {
+            subredditName.text = subreddit.namePrefixed
+            subscribers.text = getString(R.string.subscribers, subreddit.subscribers ?: 0)
+            subredditDescription.text = subreddit.description
+        }
     }
 
     private fun setExpandButtonClick() {
-        binding.expandButton.setOnClickListener {
-            when (binding.detailedInfo.visibility) {
-                View.GONE -> binding.detailedInfo.visibility = View.VISIBLE
-                View.VISIBLE -> binding.detailedInfo.visibility = View.GONE
-                View.INVISIBLE -> {}
+        with(binding) {
+            expandButton.setOnClickListener {
+                when (detailedInfo.visibility) {
+                    View.GONE -> detailedInfo.visibility = View.VISIBLE
+                    View.VISIBLE -> detailedInfo.visibility = View.GONE
+                    View.INVISIBLE -> {}
+                }
             }
         }
     }
@@ -110,11 +117,13 @@ class SingleSubredditFragment : Fragment(R.layout.fragment_single_subreddit) {
     }
 
     private fun setSubscribeButtonClick(data: Subreddit) {
-        binding.subscribeButton.setOnClickListener {
-            binding.subscribeButton.isSelected = !binding.subscribeButton.isSelected
-            val action =
-                if (!binding.subscribeButton.isSelected) com.biryulindevelop.common.constants.UNSUBSCRIBE else com.biryulindevelop.common.constants.SUBSCRIBE
-            onClick(SubQuery(name = data.name, action = action), ClickableView.SUBSCRIBE)
+        with(binding) {
+            subscribeButton.setOnClickListener {
+                subscribeButton.isSelected = !subscribeButton.isSelected
+                val action =
+                    if (!subscribeButton.isSelected) com.biryulindevelop.common.constants.UNSUBSCRIBE else com.biryulindevelop.common.constants.SUBSCRIBE
+                onClick(SubQuery(name = data.name, action = action), ClickableView.SUBSCRIBE)
+            }
         }
     }
 

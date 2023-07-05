@@ -17,10 +17,11 @@ import com.google.android.material.snackbar.BaseTransientBottomBar
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 
+/** binding is based on library "ViewBindingPropertyDelegate", by Kirill Rozov aka kirich1409
+more info:  https://github.com/androidbroadcast/ViewBindingPropertyDelegate */
+
 @AndroidEntryPoint
 class ProfileFragment : Fragment(R.layout.fragment_profile) {
-    //binding is based on library "ViewBindingPropertyDelegate", by Kirill Rozov aka kirich1409
-    //manages ViewBinding lifecycle and clears the reference to it to prevent memory leaks, etc...
     private val binding by viewBinding(FragmentProfileBinding::bind)
     private val viewModel: ProfileViewModel by viewModels()
 
@@ -41,27 +42,29 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
     }
 
     private fun updateUi(state: LoadState) {
-        when (state) {
-            LoadState.NotStartedYet -> {}
-            LoadState.Loading -> {
-                binding.containerView.isVisible = false
-                binding.common.progressBar.isVisible = true
-                binding.common.error.isVisible = false
-            }
+        with(binding) {
+            when (state) {
+                LoadState.NotStartedYet -> {}
+                LoadState.Loading -> {
+                    containerView.isVisible = false
+                    common.progressBar.isVisible = true
+                    common.error.isVisible = false
+                }
 
-            is LoadState.Error -> {
-                binding.containerView.isVisible = false
-                binding.common.progressBar.isVisible = false
-                binding.common.error.isVisible = true
-            }
+                is LoadState.Error -> {
+                    containerView.isVisible = false
+                    common.progressBar.isVisible = false
+                    common.error.isVisible = true
+                }
 
-            is LoadState.Content -> {
-                binding.containerView.isVisible = true
-                binding.common.progressBar.isVisible = false
-                binding.common.error.isVisible = false
-                val data = state.data as Profile
-                if (data.urlAvatar != null) loadAvatar(data.urlAvatar!!)
-                loadProfileTexts(data)
+                is LoadState.Content -> {
+                    containerView.isVisible = true
+                    common.progressBar.isVisible = false
+                    common.error.isVisible = false
+                    val data = state.data as Profile
+                    if (data.urlAvatar != null) loadAvatar(data.urlAvatar!!)
+                    loadProfileTexts(data)
+                }
             }
         }
     }

@@ -11,10 +11,12 @@ import com.biryulindevelop.redditron.databinding.FragmentOnboardingBinding
 import com.google.android.material.tabs.TabLayoutMediator
 import dagger.hilt.android.AndroidEntryPoint
 
+/** binding is based on library "ViewBindingPropertyDelegate", by Kirill Rozov aka kirich1409
+more info:  https://github.com/androidbroadcast/ViewBindingPropertyDelegate */
+
 @AndroidEntryPoint
 class OnboardingFragment : Fragment(R.layout.fragment_onboarding) {
-    //binding is based on library "ViewBindingPropertyDelegate", by Kirill Rozov aka kirich1409
-    //manages ViewBinding lifecycle and clears the reference to it to prevent memory leaks, etc...
+
     private var mediator: TabLayoutMediator? = null
     private val binding by viewBinding(FragmentOnboardingBinding::bind)
     private val viewModel: OnboardingViewModel by viewModels()
@@ -31,14 +33,6 @@ class OnboardingFragment : Fragment(R.layout.fragment_onboarding) {
         binding.viewPager.adapter = ViewPagerAdapter(
             resources.getStringArray(R.array.onboarding_texts_array1),
             resources.getStringArray(R.array.onboarding_texts_array2),
-            /**можно было бы с id и грузить glide'ом, но он тормозит, и заранее кэшировать
-             * векторы не может, а так очень быстро всё подгружается*/
-            /**можно было бы с id и грузить glide'ом, но он тормозит, и заранее кэшировать
-             * векторы не может, а так очень быстро всё подгружается*/
-            /**можно было бы с id и грузить glide'ом, но он тормозит, и заранее кэшировать
-             * векторы не может, а так очень быстро всё подгружается*/
-            /**можно было бы с id и грузить glide'ом, но он тормозит, и заранее кэшировать
-             * векторы не может, а так очень быстро всё подгружается*/
             arrayOf(
                 ResourcesCompat.getDrawable(resources, R.drawable.onb_image1, null)
                     ?: error("lost onboarding image1"),
@@ -63,9 +57,11 @@ class OnboardingFragment : Fragment(R.layout.fragment_onboarding) {
     }
 
     private fun setAuthorizeButton() {
-        binding.skipButton.background = null
-        binding.skipButton.setOnClickListener {
-            viewModel.navigateToAuth(this)
+        with(binding) {
+            skipButton.background = null
+            skipButton.setOnClickListener {
+                viewModel.navigateToAuth(this@OnboardingFragment)
+            }
         }
     }
 

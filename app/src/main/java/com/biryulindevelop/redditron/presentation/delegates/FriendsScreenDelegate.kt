@@ -10,9 +10,11 @@ fun friendsDelegate() = adapterDelegateViewBinding<Friend, ListItem, ItemFriends
     { inflater, root -> ItemFriendsBinding.inflate(inflater, root, false) }
 ) {
     bind {
-        binding.name = item.name
-        binding.id = item.id
-        binding.friendPhoto.loadImage(item.avatar_url)
-        binding.executePendingBindings()
+        with(binding) {
+            name = item.name
+            id = item.id
+            friendPhoto.loadImage(item.avatar_url)
+            executePendingBindings()
+        }
     }
 }
