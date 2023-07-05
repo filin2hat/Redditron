@@ -5,7 +5,9 @@ import android.view.View
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.navArgs
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.biryulindevelop.domain.ListItem
@@ -21,6 +23,7 @@ import com.google.android.material.snackbar.BaseTransientBottomBar.LENGTH_SHORT
 import com.google.android.material.snackbar.Snackbar
 import com.hannesdorfmann.adapterdelegates4.ListDelegationAdapter
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
 
 /** binding is based on library "ViewBindingPropertyDelegate", by Kirill Rozov aka kirich1409
 more info:  https://github.com/androidbroadcast/ViewBindingPropertyDelegate */
@@ -29,52 +32,48 @@ more info:  https://github.com/androidbroadcast/ViewBindingPropertyDelegate */
 class UserFragment : Fragment(R.layout.fragment_user) {
     private val binding by viewBinding(FragmentUserBinding::bind)
     private val viewModel: UserViewModel by viewModels()
+    private val args: UserFragmentArgs by navArgs()
     private val adapter by lazy {
-        ListDelegationAdapter(postsDelegate { subQuery: SubQuery, _: ListItem, clickableView: ClickableView ->
+        ListDelegationAdapter(postsDelegate { subQuery, _, clickableView ->
             onClick(subQuery, clickableView)
         })
     }
 
-    private val args by navArgs<UserFragmentArgs>()
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        getLoadingState()
-        setMakeFriendsClick(args.name)
+        setupViews()
+        observeViewModel()
     }
 
-    private fun getLoadingState() {
+    private fun setupViews() {
+        binding.buttonMakeFriends.setOnClickListener {
+            viewModel.makeFriends(args.name)
+            Snackbar.make(binding.containerView, getString(R.string.friends_now), LENGTH_SHORT)
+                .show()
+        }
+        binding.recycler.adapter = adapter
+    }
+
+    private fun observeViewModel() {
         viewModel.getProfileAndContent(args.name)
-        viewLifecycleOwner.lifecycleScope.launchWhenStarted {
-            viewModel.state.collect { state -> updateUi(state) }
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.state.collect { state -> updateUi(state) }
+            }
         }
     }
 
     private fun updateUi(state: LoadState) {
         with(binding) {
-            when (state) {
-                LoadState.NotStartedYet -> {}
-                LoadState.Loading -> {
-                    containerView.isVisible = false
-                    common.progressBar.isVisible = true
-                    common.error.isVisible = false
-                }
+            containerView.isVisible = state is LoadState.Content
+            common.progressBar.isVisible = state is LoadState.Loading
+            common.error.isVisible = state is LoadState.Error
 
-                is LoadState.Error -> {
-                    containerView.isVisible = false
-                    common.progressBar.isVisible = false
-                    common.error.isVisible = true
-                }
-
-                is LoadState.Content -> {
-                    containerView.isVisible = true
-                    common.progressBar.isVisible = false
-                    common.error.isVisible = false
-                    val data = state.data as Profile
-                    if (data.urlAvatar != null) loadAvatar(data.urlAvatar!!)
-                    loadProfileTexts(data)
-                    loadUserContent(state.data2 as List<ListItem>)
-                }
+            if (state is LoadState.Content) {
+                val data = state.data as Profile
+                data.urlAvatar?.let { loadAvatar(it) }
+                loadProfileTexts(data)
+                loadUserContent(state.data2 as List<ListItem>)
             }
         }
     }
@@ -88,32 +87,19 @@ class UserFragment : Fragment(R.layout.fragment_user) {
             userName.text = data.name
             userId.text = getString(R.string.user_id, data.id)
             karma.text = getString(R.string.karma, data.total_karma ?: 0)
-            followers.text =
-                getString(R.string.followers, data.more_infos?.subscribers ?: "0")
+            followers.text = getString(R.string.followers, data.more_infos?.subscribers ?: "0")
         }
     }
 
     private fun loadUserContent(data: List<ListItem>) {
-        binding.recycler.adapter = adapter
         adapter.items = data
-
-    }
-
-    private fun setMakeFriendsClick(name: String) {
-        binding.buttonMakeFriends.setOnClickListener {
-            viewModel.makeFriends(name)
-            Snackbar.make(binding.containerView, getString(R.string.friends_now), LENGTH_SHORT)
-                .show()
-        }
     }
 
     private fun onClick(subQuery: SubQuery, clickableView: ClickableView) {
         when (clickableView) {
-            ClickableView.SAVE -> viewModel.savePost(postName = subQuery.name)
-            ClickableView.UNSAVE -> viewModel.unsavePost(postName = subQuery.name)
-            ClickableView.VOTE ->
-                viewModel.votePost(voteDirection = subQuery.voteDirection, postName = subQuery.name)
-
+            ClickableView.SAVE -> viewModel.savePost(subQuery.name)
+            ClickableView.UNSAVE -> viewModel.unsavePost(subQuery.name)
+            ClickableView.VOTE -> viewModel.votePost(subQuery.voteDirection, subQuery.name)
             else -> {}
         }
     }

@@ -1,8 +1,8 @@
 package com.biryulindevelop.redditron.presentation.screens.profile
 
-import androidx.fragment.app.Fragment
 import androidx.lifecycle.viewModelScope
-import androidx.navigation.fragment.findNavController
+import com.biryulindevelop.common.constants.TOKEN_ENABLED
+import com.biryulindevelop.common.constants.TOKEN_KEY
 import com.biryulindevelop.domain.repository.ProfileRemoteRepository
 import com.biryulindevelop.domain.repository.SubredditsRemoteRepository
 import com.biryulindevelop.domain.state.LoadState
@@ -28,25 +28,12 @@ class ProfileViewModel @Inject constructor(
     }
 
     fun getClearedUrlAvatar(urlAvatar: String): String {
-        var clearedUrl = urlAvatar
-        if (urlAvatar.contains('?')) {
-            val questionMark = urlAvatar.indexOf('?', 0)
-            clearedUrl = urlAvatar.substring(0, questionMark)
-        }
-        return clearedUrl
+        return urlAvatar.substringBefore('?')
     }
 
-    fun logout(fragment: Fragment) {
-        storageService.save(com.biryulindevelop.common.constants.TOKEN_KEY, "")
-        storageService.save(com.biryulindevelop.common.constants.TOKEN_ENABLED, false)
-        fragment.findNavController()
-            .navigate(ProfileFragmentDirections.actionNavigationProfileToNavigationAuth())
-    }
-
-    fun navigateToFriends(fragment: Fragment) {
-        fragment.findNavController().navigate(
-            ProfileFragmentDirections.actionNavigationProfileToNavigationFriends()
-        )
+    fun wipeToken() {
+        storageService.save(TOKEN_KEY, "")
+        storageService.save(TOKEN_ENABLED, false)
     }
 
     fun clearSaved() {

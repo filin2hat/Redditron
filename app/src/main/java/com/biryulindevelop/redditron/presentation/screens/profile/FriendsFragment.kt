@@ -1,11 +1,15 @@
 package com.biryulindevelop.redditron.presentation.screens.profile
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.View
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
+import androidx.navigation.fragment.findNavController
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.biryulindevelop.domain.models.Friends
 import com.biryulindevelop.domain.state.LoadState
@@ -14,6 +18,7 @@ import com.biryulindevelop.redditron.databinding.FragmentFriendsBinding
 import com.biryulindevelop.redditron.presentation.delegates.friendsDelegate
 import com.hannesdorfmann.adapterdelegates4.ListDelegationAdapter
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
 
 /** binding is based on library "ViewBindingPropertyDelegate", by Kirill Rozov aka kirich1409
 more info:  https://github.com/androidbroadcast/ViewBindingPropertyDelegate */
@@ -26,52 +31,41 @@ class FriendsFragment : Fragment(R.layout.fragment_friends) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        getLoadingState()
-        setToolbarBackButton()
+        setupViews()
+        observeViewModel()
     }
 
-    private fun getLoadingState() {
+    private fun setupViews() {
+        binding.recyclerView.adapter = adapter
+        binding.buttonBack.setOnClickListener {
+            findNavController().popBackStack()
+        }
+    }
+
+    private fun observeViewModel() {
         viewModel.getFriends()
-        viewLifecycleOwner.lifecycleScope.launchWhenStarted {
-            viewModel.state.collect { state -> updateUi(state) }
+        viewLifecycleOwner.lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.state.collect { state -> updateUi(state) }
+            }
         }
     }
 
     private fun updateUi(state: LoadState) {
         with(binding) {
-            when (state) {
-                LoadState.NotStartedYet -> {}
-                LoadState.Loading -> {
-                    common.progressBar.isVisible = true
-                    common.error.isVisible = false
-                    recyclerView.isVisible = false
-                }
-
-                is LoadState.Content -> {
-                    common.progressBar.isVisible = false
-                    common.error.isVisible = false
-                    recyclerView.isVisible = true
-                    loadContent(state.data as Friends)
-                }
-
-                is LoadState.Error -> {
-                    common.progressBar.isVisible = false
-                    common.error.isVisible = true
-                    recyclerView.isVisible = false
-                }
+            common.progressBar.isVisible = state is LoadState.Loading
+            common.error.isVisible = state is LoadState.Error
+            recyclerView.isVisible = state is LoadState.Content
+            if (state is LoadState.Content) {
+                val data = state.data as Friends
+                loadContent(data)
             }
         }
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     private fun loadContent(data: Friends) {
         adapter.items = data.friends_list
-        binding.recyclerView.adapter = adapter
-    }
-
-    private fun setToolbarBackButton() {
-        binding.buttonBack.setOnClickListener {
-            viewModel.navigateBack(this)
-        }
+        adapter.notifyDataSetChanged()
     }
 }

@@ -19,10 +19,9 @@ class UserViewModel @Inject constructor(
     fun getProfileAndContent(name: String) {
         viewModelScope.launch(Dispatchers.IO + handler) {
             loadState.value = LoadState.Loading
-            loadState.value = LoadState.Content(
-                repositoryProfile.getAnotherUserProfile(name),
-                repositoryProfile.getUserContent(name)
-            )
+            val userProfile = repositoryProfile.getAnotherUserProfile(name)
+            val userContent = repositoryProfile.getUserContent(name)
+            loadState.value = LoadState.Content(userProfile, userContent)
         }
     }
 
