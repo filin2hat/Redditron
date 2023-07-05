@@ -7,8 +7,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.hannesdorfmann.adapterdelegates4.AdapterDelegate
 import com.hannesdorfmann.adapterdelegates4.AdapterDelegatesManager
 
-//Adapter is based on library 'com.hannesdorfmann:adapterdelegates4-kotlin-dsl-viewbinding:4.3.2', by SR-rodi
-//library 'out-of-the-box' is working with outdated Paged List, not Paged Data
+/**Adapter is based on library 'com.hannesdorfmann:adapterdelegates4-kotlin-dsl-viewbinding:4.3.2',
+library 'out-of-the-box' is working with outdated Paged List, not Paged Data */
 
 abstract class PagedDataDelegationAdapter<T : Any> : PagingDataAdapter<T, RecyclerView.ViewHolder> {
     protected val delegatesManager: AdapterDelegatesManager<List<T>>
@@ -25,19 +25,12 @@ abstract class PagedDataDelegationAdapter<T : Any> : PagingDataAdapter<T, Recycl
     constructor(diffCallback: DiffUtil.ItemCallback<T>) : this(
         AdapterDelegatesManager<List<T>?>(),
         diffCallback
-    ) {
-    }
+    )
 
     constructor(
         delegatesManager: AdapterDelegatesManager<List<T>?>,
         diffCallback: DiffUtil.ItemCallback<T>,
     ) : super(diffCallback) {
-        if (diffCallback == null) {
-            throw NullPointerException("ItemCallback is null")
-        }
-        if (delegatesManager == null) {
-            throw NullPointerException("AdapterDelegatesManager is null")
-        }
         this.delegatesManager = delegatesManager as AdapterDelegatesManager<List<T>>
     }
 
@@ -48,8 +41,6 @@ abstract class PagedDataDelegationAdapter<T : Any> : PagingDataAdapter<T, Recycl
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         getItem(position)
-
-        // Internally triggers loading items around items around the given position
         delegatesManager.onBindViewHolder(snapshot().items, position, holder, null)
     }
 
@@ -57,7 +48,7 @@ abstract class PagedDataDelegationAdapter<T : Any> : PagingDataAdapter<T, Recycl
         holder: RecyclerView.ViewHolder, position: Int,
         payloads: List<*>,
     ) {
-        getItem(position) // Internally triggers loading items around items around the given position
+        getItem(position)
         delegatesManager.onBindViewHolder(snapshot().items, position, holder, payloads)
     }
 

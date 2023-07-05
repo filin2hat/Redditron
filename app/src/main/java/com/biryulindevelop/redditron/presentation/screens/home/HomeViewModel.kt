@@ -25,10 +25,8 @@ import javax.inject.Inject
 class HomeViewModel @Inject constructor(
     private val repository: SubredditsRemoteRepository
 ) : StateViewModel() {
-
     private val _query = Query()
     private val subredditsSource get() = _query.source
-
     private val _subredditsSourceFlow = MutableStateFlow(subredditsSource)
 
     fun setSource(position: Int) {
@@ -40,8 +38,6 @@ class HomeViewModel @Inject constructor(
     fun getSubreddits() {
         viewModelScope.launch(Dispatchers.IO + handler) {
             loadState.value = LoadState.Loading
-            //loading is so fast, that progress bar isn't seen without delay
-            //delay(1_000)
             getSubredditsList(subredditsSource, ListTypes.SUBREDDIT)
             loadState.value = LoadState.Content()
         }
@@ -49,13 +45,16 @@ class HomeViewModel @Inject constructor(
 
     @OptIn(ExperimentalCoroutinesApi::class)
     var subredditsList: Flow<PagingData<ListItem>> =
-        _subredditsSourceFlow.asStateFlow().flatMapLatest { source ->
-            if ((source == POPULAR) || (source == NEW)) {
-                getSubredditsList(source, ListTypes.SUBREDDIT).flow
-            } else {
-                getSubredditsList(source, ListTypes.SUBREDDITS_SEARCH).flow
+        _subredditsSourceFlow.asStateFlow()
+            .flatMapLatest { source ->
+                val listType = if (source == POPULAR || source == NEW) {
+                    ListTypes.SUBREDDIT
+                } else {
+                    ListTypes.SUBREDDITS_SEARCH
+                }
+                getSubredditsList(source, listType).flow
             }
-        }.cachedIn(CoroutineScope(Dispatchers.IO))
+            .cachedIn(viewModelScope + Dispatchers.IO)
 
 
     private fun getSubredditsList(

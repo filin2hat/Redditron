@@ -6,7 +6,9 @@ import android.view.View
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.navArgs
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.biryulindevelop.domain.ListItem
@@ -19,6 +21,7 @@ import com.biryulindevelop.redditron.databinding.FragmentSingleSubredditBinding
 import com.google.android.material.snackbar.BaseTransientBottomBar.LENGTH_SHORT
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
 
 /** binding is based on library "ViewBindingPropertyDelegate", by Kirill Rozov aka kirich1409
 more info:  https://github.com/androidbroadcast/ViewBindingPropertyDelegate */
@@ -27,36 +30,36 @@ more info:  https://github.com/androidbroadcast/ViewBindingPropertyDelegate */
 class SingleSubredditFragment : Fragment(R.layout.fragment_single_subreddit) {
     private val binding by viewBinding(FragmentSingleSubredditBinding::bind)
     private val viewModel: SingleSubredditViewModel by viewModels()
+    private val args: SingleSubredditFragmentArgs by navArgs()
     private val adapter by lazy {
         HomePagedDataDelegationAdapter { subQuery: SubQuery, _: ListItem, clickableView: ClickableView ->
             onClick(subQuery, clickableView)
         }
     }
-    private val args by navArgs<SingleSubredditFragmentArgs>()
-
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        loadPosts()
-        getLoadingState(args.name)
+        observeViewModel(args.name)
         setToolbarBackButton()
     }
 
-    private fun loadPosts() {
+    private fun observeViewModel(name: String) {
         binding.recycler.adapter = adapter
-        viewLifecycleOwner.lifecycleScope.launchWhenStarted {
-            viewModel.getPostsList(args.name).collect { pagingData ->
-                adapter.submitData(pagingData)
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                launch {
+                    viewModel.getPostsList(args.name).collect { pagingData ->
+                        adapter.submitData(pagingData)
+                    }
+                }
+                launch {
+                    viewModel.state.collect { state ->
+                        updateUi(state)
+                    }
+                }
             }
         }
-    }
-
-    private fun getLoadingState(name: String) {
         viewModel.getSubredditInfo(name)
-        viewLifecycleOwner.lifecycleScope.launchWhenStarted {
-            viewModel.state.collect { state -> updateUi(state) }
-        }
     }
 
     private fun updateUi(state: LoadState) {
