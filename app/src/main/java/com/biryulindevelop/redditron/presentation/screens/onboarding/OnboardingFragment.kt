@@ -23,43 +23,40 @@ class OnboardingFragment : Fragment(R.layout.fragment_onboarding) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        setViewPager()
-        setTabs()
-        setAuthorizeButton()
+        setupViewPager()
+        setupTabs()
+        setupAuthorizeButton()
         saveOnboardingShown()
     }
 
-    private fun setViewPager() {
-        binding.viewPager.adapter = ViewPagerAdapter(
-            resources.getStringArray(R.array.onboarding_texts_array1),
-            resources.getStringArray(R.array.onboarding_texts_array2),
-            arrayOf(
-                ResourcesCompat.getDrawable(resources, R.drawable.onb_image1, null)
-                    ?: error("lost onboarding image1"),
-                ResourcesCompat.getDrawable(resources, R.drawable.onb_image2, null)
-                    ?: error("lost onboarding image2"),
-                ResourcesCompat.getDrawable(resources, R.drawable.onb_image3, null)
-                    ?: error("lost onboarding image3"),
-            )
+    private fun setupViewPager() {
+        val onboardingTextsArray1 = resources.getStringArray(R.array.onboarding_texts_array1)
+        val onboardingTextsArray2 = resources.getStringArray(R.array.onboarding_texts_array2)
+        val onboardingImages = arrayOf(
+            ResourcesCompat.getDrawable(resources, R.drawable.onb_image1, null)
+                ?: error("lost onboarding image1"),
+            ResourcesCompat.getDrawable(resources, R.drawable.onb_image2, null)
+                ?: error("lost onboarding image2"),
+            ResourcesCompat.getDrawable(resources, R.drawable.onb_image3, null)
+                ?: error("lost onboarding image3")
         )
-        binding.viewPager.registerOnPageChangeCallback(
-            ChangeButtonTextOnPageChange(
-                binding.skipButton,
-                requireContext(),
-                resources.getStringArray(R.array.onboarding_texts_array1).lastIndex
-            )
-        )
+        val viewPagerAdapter = ViewPagerAdapter(onboardingTextsArray1, onboardingTextsArray2, onboardingImages)
+        binding.viewPager.adapter = viewPagerAdapter
+
+        val lastPageIndex = onboardingTextsArray1.lastIndex
+        val changeButtonTextOnPageChange = ChangeButtonTextOnPageChange(binding.skipButton, requireContext(), lastPageIndex)
+        binding.viewPager.registerOnPageChangeCallback(changeButtonTextOnPageChange)
     }
 
-    private fun setTabs() {
+    private fun setupTabs() {
         mediator = TabLayoutMediator(binding.tabs, binding.viewPager) { _, _ -> }
-        mediator!!.attach()
+        mediator?.attach()
     }
 
-    private fun setAuthorizeButton() {
-        with(binding) {
-            skipButton.background = null
-            skipButton.setOnClickListener {
+    private fun setupAuthorizeButton() {
+        with(binding.skipButton) {
+            background = null
+            setOnClickListener {
                 viewModel.navigateToAuth(this@OnboardingFragment)
             }
         }
