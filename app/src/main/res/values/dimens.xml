@@ -30,6 +30,6 @@
     <dimen name="tab_layout_height">16dp</dimen>
     <dimen name="tab_min_width">150dp</dimen>
 
-    <dimen name="card_corner_radius">16dp</dimen>
+    <dimen name="card_corner_radius">8dp</dimen>
     <dimen name="card_stroke_width">2dp</dimen>
 </resources>
