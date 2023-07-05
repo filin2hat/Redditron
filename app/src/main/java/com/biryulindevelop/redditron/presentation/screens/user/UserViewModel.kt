@@ -4,7 +4,7 @@ import androidx.lifecycle.viewModelScope
 import com.biryulindevelop.domain.repository.ProfileRemoteRepository
 import com.biryulindevelop.domain.repository.SubredditsRemoteRepository
 import com.biryulindevelop.domain.state.LoadState
-import com.biryulindevelop.redditron.presentation.utils.StateViewModel
+import com.biryulindevelop.redditron.presentation.StateViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -18,8 +18,8 @@ class UserViewModel @Inject constructor(
 
     fun getProfileAndContent(name: String) {
         viewModelScope.launch(Dispatchers.IO + handler) {
-            _state.value = LoadState.Loading
-            _state.value = LoadState.Content(
+            loadState.value = LoadState.Loading
+            loadState.value = LoadState.Content(
                 repositoryProfile.getAnotherUserProfile(name),
                 repositoryProfile.getUserContent(name)
             )

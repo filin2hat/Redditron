@@ -5,7 +5,7 @@ import androidx.lifecycle.viewModelScope
 import androidx.navigation.fragment.findNavController
 import com.biryulindevelop.domain.repository.ProfileRemoteRepository
 import com.biryulindevelop.domain.state.LoadState
-import com.biryulindevelop.redditron.presentation.utils.StateViewModel
+import com.biryulindevelop.redditron.presentation.StateViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -18,8 +18,8 @@ class FriendsViewModel @Inject constructor(
 
     fun getFriends() {
         viewModelScope.launch(Dispatchers.IO + handler) {
-            _state.value = LoadState.Loading
-            _state.value = LoadState.Content(repository.getFriends())
+            loadState.value = LoadState.Loading
+            loadState.value = LoadState.Content(repository.getFriends())
         }
     }
 

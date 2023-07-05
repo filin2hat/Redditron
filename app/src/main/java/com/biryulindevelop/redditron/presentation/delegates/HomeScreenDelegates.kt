@@ -1,6 +1,8 @@
 package com.biryulindevelop.redditron.presentation.delegates
 
 import android.view.View
+import com.biryulindevelop.common.constants.SUBSCRIBE
+import com.biryulindevelop.common.constants.UNSUBSCRIBE
 import com.biryulindevelop.domain.ListItem
 import com.biryulindevelop.domain.models.Post
 import com.biryulindevelop.domain.models.Subreddit
@@ -31,7 +33,7 @@ fun subredditsDelegate(
         subscribeButton.setOnClickListener {
             subscribeButton.isSelected = !subscribeButton.isSelected
             val action =
-                if (!subscribeButton.isSelected) com.biryulindevelop.common.constants.UNSUBSCRIBE else com.biryulindevelop.common.constants.SUBSCRIBE
+                if (!subscribeButton.isSelected) UNSUBSCRIBE else SUBSCRIBE
             onClick(SubQuery(name = item.name, action = action), item, ClickableView.SUBSCRIBE)
         }
 
@@ -52,66 +54,62 @@ fun postsDelegate(
             postTitle.text = item.title
             subredditName.text = item.subredditNamePrefixed
             userName.text = context.getString(R.string.author, item.author)
-            if (item.postHint == "image") {
-                postBodyImage.apply {
-                    loadImage(item.url)
-                    visibility = View.VISIBLE
-                }
-            } else postBodyImage.visibility = View.GONE
+            postBodyImage.visibility = if (item.postHint == "image") View.VISIBLE else View.GONE
+
+            postBodyImage.apply {
+                loadImage(item.url)
+                visibility = if (item.postHint == "image") View.VISIBLE else View.GONE
+            }
 
             downloadButton.setOnClickListener {
-                if (!downloadButton.isSelected) {
+                val message = if (!downloadButton.isSelected) {
                     downloadButton.isSelected = true
-                    Snackbar.make(root, getString(R.string.downloaded), LENGTH_SHORT).show()
-                } else Snackbar.make(
-                    root,
-                    getString(R.string.already_downloaded),
-                    LENGTH_SHORT
-                )
-                    .show()
+                    getString(R.string.downloaded)
+                } else {
+                    getString(R.string.already_downloaded)
+                }
+                Snackbar.make(root, message, LENGTH_SHORT).show()
             }
 
             upVoteButton.isSelected = item.likedByUser == true
-
             upVoteButton.setOnClickListener {
-                if (!upVoteButton.isSelected) {
-                    onClick(SubQuery(voteDirection = 1, name = item.name), item, ClickableView.VOTE)
-                    showScore(item.score + 1)
-                } else {
-                    onClick(SubQuery(voteDirection = 0, name = item.name), item, ClickableView.VOTE)
-                    showScore(item.score)
-                }
+                val voteDirection = if (!upVoteButton.isSelected) 1 else 0
+                onClick(
+                    SubQuery(voteDirection = voteDirection, name = item.name),
+                    item,
+                    ClickableView.VOTE
+                )
+                showScore(if (!upVoteButton.isSelected) item.score + 1 else item.score)
                 upVoteButton.isSelected = !upVoteButton.isSelected
                 downVoteButton.isSelected = false
             }
 
             downVoteButton.isSelected = item.likedByUser == false
             downVoteButton.setOnClickListener {
-                if (!downVoteButton.isSelected) {
-                    onClick(
-                        SubQuery(voteDirection = -1, name = item.name),
-                        item,
-                        ClickableView.VOTE
-                    )
-                    showScore(item.score - 1)
-                } else {
-                    onClick(SubQuery(voteDirection = 0, name = item.name), item, ClickableView.VOTE)
-                    showScore(item.score)
-                }
+                val voteDirection = if (!downVoteButton.isSelected) -1 else 0
+                onClick(
+                    SubQuery(voteDirection = voteDirection, name = item.name),
+                    item,
+                    ClickableView.VOTE
+                )
+                showScore(if (!downVoteButton.isSelected) item.score - 1 else item.score)
                 downVoteButton.isSelected = !downVoteButton.isSelected
                 upVoteButton.isSelected = false
             }
 
             saveButton.isSelected = item.saved == true
             saveButton.setOnClickListener {
-                if (saveButton.isSelected) {
-                    Snackbar.make(root, getString(R.string.unsaved), LENGTH_SHORT).show()
-                    onClick(SubQuery(name = item.name), item, ClickableView.UNSAVE)
+                val message = if (saveButton.isSelected) {
+                    getString(R.string.unsaved)
                 } else {
-                    Snackbar.make(root, getString(R.string.saved), LENGTH_SHORT)
-                        .show()
-                    onClick(SubQuery(name = item.name), item, ClickableView.SAVE)
+                    getString(R.string.saved)
                 }
+                Snackbar.make(root, message, LENGTH_SHORT).show()
+                onClick(
+                    SubQuery(name = item.name),
+                    item,
+                    if (saveButton.isSelected) ClickableView.UNSAVE else ClickableView.SAVE
+                )
                 saveButton.isSelected = !saveButton.isSelected
             }
 

@@ -15,7 +15,7 @@ import com.biryulindevelop.domain.state.LoadState
 import com.biryulindevelop.domain.tools.ListTypes
 import com.biryulindevelop.domain.tools.Query
 import com.biryulindevelop.domain.tools.SubQuery
-import com.biryulindevelop.redditron.presentation.utils.StateViewModel
+import com.biryulindevelop.redditron.presentation.StateViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.*
@@ -39,11 +39,11 @@ class HomeViewModel @Inject constructor(
 
     fun getSubreddits() {
         viewModelScope.launch(Dispatchers.IO + handler) {
-            _state.value = LoadState.Loading
+            loadState.value = LoadState.Loading
             //loading is so fast, that progress bar isn't seen without delay
             //delay(1_000)
             getSubredditsList(subredditsSource, ListTypes.SUBREDDIT)
-            _state.value = LoadState.Content()
+            loadState.value = LoadState.Content()
         }
     }
 
@@ -83,11 +83,11 @@ class HomeViewModel @Inject constructor(
 
     fun onSearchButtonClick(text: String) {
         viewModelScope.launch(Dispatchers.Main + handler) {
-            _state.value = LoadState.Loading
+            loadState.value = LoadState.Loading
             _query.source = text
             _subredditsSourceFlow.value = subredditsSource
             getSubredditsList(text, ListTypes.SUBREDDITS_SEARCH)
-            _state.value = LoadState.Content()
+            loadState.value = LoadState.Content()
         }
     }
 

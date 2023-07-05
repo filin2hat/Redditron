@@ -12,7 +12,7 @@ import com.biryulindevelop.domain.repository.SubredditsRemoteRepository
 import com.biryulindevelop.domain.state.LoadState
 import com.biryulindevelop.domain.tools.ListTypes
 import com.biryulindevelop.domain.tools.SubQuery
-import com.biryulindevelop.redditron.presentation.utils.StateViewModel
+import com.biryulindevelop.redditron.presentation.StateViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
@@ -30,8 +30,8 @@ class SingleSubredditViewModel @Inject constructor(private val repository: Subre
 
     fun getSubredditInfo(name: String) {
         viewModelScope.launch(Dispatchers.IO + handler) {
-            _state.value = LoadState.Loading
-            _state.value = LoadState.Content(repository.getSubredditInfo(name))
+            loadState.value = LoadState.Loading
+            loadState.value = LoadState.Content(repository.getSubredditInfo(name))
         }
     }
 

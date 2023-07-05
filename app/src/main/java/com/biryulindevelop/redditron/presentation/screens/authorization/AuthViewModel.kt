@@ -1,14 +1,12 @@
 package com.biryulindevelop.redditron.presentation.screens.authorization
 
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.biryulindevelop.data.api.authentication.ApiToken
 import com.biryulindevelop.domain.state.LoadState
 import com.biryulindevelop.domain.storageservice.StorageService
+import com.biryulindevelop.redditron.presentation.StateViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -16,22 +14,19 @@ import javax.inject.Inject
 class AuthViewModel @Inject constructor(
     private val apiToken: ApiToken,
     private val storageService: StorageService
-) : ViewModel() {
-
-    private val _state = MutableStateFlow<LoadState>(LoadState.NotStartedYet)
-    val state = _state.asStateFlow()
+) : StateViewModel() {
 
     fun createToken(code: String) {
         if (code != PLUG)
             viewModelScope.launch(Dispatchers.IO) {
-                _state.value = LoadState.Loading
+                loadState.value = LoadState.Loading
                 try {
                     storageService.saveEncryptedToken(
                         apiToken.getToken(code = code).access_token
                     )
-                    _state.value = LoadState.Content()
+                    loadState.value = LoadState.Content()
                 } catch (e: Exception) {
-                    _state.value = LoadState.Error(message = e.message.toString())
+                    loadState.value = LoadState.Error(message = e.message.toString())
                 }
             }
     }

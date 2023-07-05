@@ -12,16 +12,14 @@ import com.biryulindevelop.domain.ListItem
 import com.biryulindevelop.domain.models.Subreddit
 import com.biryulindevelop.domain.repository.SubredditsRemoteRepository
 import com.biryulindevelop.domain.tools.Change
-import com.biryulindevelop.domain.tools.FavoritesQuery
 import com.biryulindevelop.domain.tools.ListTypes
 import com.biryulindevelop.domain.tools.SubQuery
-import com.biryulindevelop.redditron.presentation.utils.StateViewModel
+import com.biryulindevelop.redditron.presentation.StateViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.flatMapLatest
 import kotlinx.coroutines.launch
@@ -31,9 +29,6 @@ import javax.inject.Inject
 class FavouritesViewModel @Inject constructor(
     private val repository: SubredditsRemoteRepository
 ) : StateViewModel() {
-
-    private val query = FavoritesQuery()
-    private val _thingFlow = MutableStateFlow(Change(query))
 
     fun setQuery(position: Int, isTabSource: Boolean) =
         if (isTabSource) setSource(position) else setType(position)
@@ -48,7 +43,7 @@ class FavouritesViewModel @Inject constructor(
             if (query.listing == ListTypes.POST) query.listing = ListTypes.SAVED_POST
             if (query.listing == ListTypes.SUBREDDIT) query.listing = ListTypes.SUBSCRIBED_SUBREDDIT
         }
-        _thingFlow.value = Change(query)
+        thingFlow.value = Change(query)
     }
 
     private fun setType(position: Int) {
@@ -60,12 +55,12 @@ class FavouritesViewModel @Inject constructor(
             query.listing =
                 if (position == FIRST_POSITION_INDEX) ListTypes.SAVED_POST else ListTypes.SUBSCRIBED_SUBREDDIT
         }
-        _thingFlow.value = Change(query)
+        thingFlow.value = Change(query)
     }
 
     @OptIn(ExperimentalCoroutinesApi::class)
     var thingList: Flow<PagingData<ListItem>> =
-        _thingFlow.asStateFlow().flatMapLatest { query ->
+        thingFlow.asStateFlow().flatMapLatest { query ->
             getThingList(query.value.listing, query.value.source).flow
         }.cachedIn(CoroutineScope(Dispatchers.IO))
 
