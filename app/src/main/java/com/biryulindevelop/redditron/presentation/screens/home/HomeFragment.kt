@@ -45,6 +45,22 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         getLoadingState()
         tabLayoutListener(binding.toggleSource)
         setSearchListener()
+        loadStateItemsObserve()
+    }
+
+    private fun loadStateItemsObserve() {
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                adapter.loadStateFlow.collect { state ->
+                    with(binding) {
+                        common.progressBar.isVisible =
+                            state.refresh is androidx.paging.LoadState.Loading || state.append is androidx.paging.LoadState.Loading
+                        common.error.isVisible =
+                            state.refresh is androidx.paging.LoadState.Error || state.append is androidx.paging.LoadState.Error || state.prepend is androidx.paging.LoadState.Error
+                    }
+                }
+            }
+        }
     }
 
     private fun loadContent() {

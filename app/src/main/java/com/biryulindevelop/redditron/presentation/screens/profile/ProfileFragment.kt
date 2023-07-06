@@ -79,14 +79,14 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
     private fun loadProfileTexts(data: Profile) {
         with(binding) {
             userName.text = data.name
-            userId.text = getString(R.string.user_id, data.more_infos?.title ?: "N/A")
+            userId.text = getString(R.string.user_id, data.id)
             karma.text = getString(R.string.karma, data.total_karma ?: 0)
             followers.text = getString(R.string.followers, data.more_infos?.subscribers ?: "0")
         }
     }
 
     private fun loadAvatar(url: String) {
-        binding.imageView.loadImage(viewModel.getClearedUrlAvatar(url))
+        binding.avatarImg.loadImage(viewModel.getClearedUrlAvatar(url))
     }
 
     private fun showLogoutConfirmationDialog() {

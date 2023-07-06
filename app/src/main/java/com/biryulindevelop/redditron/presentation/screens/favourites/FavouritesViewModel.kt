@@ -31,20 +31,26 @@ class FavouritesViewModel @Inject constructor(
         if (isTabSource) setSource(position) else setType(position)
 
     private fun setSource(position: Int) {
-        query.source = if (position == FIRST_POSITION_INDEX) ALL else SAVED
-        query.listing = when (query.source) {
-            ALL -> if (query.listing == ListTypes.SAVED_POST) ListTypes.POST else ListTypes.SUBREDDIT
-            SAVED -> if (query.listing == ListTypes.POST) ListTypes.SAVED_POST else ListTypes.SUBSCRIBED_SUBREDDIT
-            else -> query.listing
+        if (position == FIRST_POSITION_INDEX) {
+            query.source = ALL
+            if (query.listing == ListTypes.SAVED_POST) query.listing = ListTypes.POST
+            if (query.listing == ListTypes.SUBSCRIBED_SUBREDDIT) query.listing = ListTypes.SUBREDDIT
+        } else {
+            query.source = SAVED
+            if (query.listing == ListTypes.POST) query.listing = ListTypes.SAVED_POST
+            if (query.listing == ListTypes.SUBREDDIT) query.listing = ListTypes.SUBSCRIBED_SUBREDDIT
         }
         thingFlow.value = Change(query)
     }
 
     private fun setType(position: Int) {
-        query.listing = if (query.source == ALL) {
-            if (position == FIRST_POSITION_INDEX) ListTypes.POST else ListTypes.SUBREDDIT
+        if (query.source == ALL) {
+            query.listing =
+                if (position == FIRST_POSITION_INDEX) ListTypes.POST else ListTypes.SUBREDDIT
+
         } else {
-            if (position == FIRST_POSITION_INDEX) ListTypes.SAVED_POST else ListTypes.SUBSCRIBED_SUBREDDIT
+            query.listing =
+                if (position == FIRST_POSITION_INDEX) ListTypes.SAVED_POST else ListTypes.SUBSCRIBED_SUBREDDIT
         }
         thingFlow.value = Change(query)
     }

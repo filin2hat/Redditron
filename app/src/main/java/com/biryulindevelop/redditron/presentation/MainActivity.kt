@@ -1,9 +1,7 @@
 package com.biryulindevelop.redditron.presentation
 
-import android.os.Build
 import android.os.Bundle
 import android.view.View
-import android.view.WindowInsetsController
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
@@ -36,18 +34,8 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
     private fun updateUIBasedOnDestination(destinationId: Int, navView: BottomNavigationView) {
         if (destinationId == R.id.navigation_onboarding || destinationId == R.id.navigation_auth) {
             navView.visibility = View.GONE
-            updateSystemUI()
         } else {
             navView.visibility = View.VISIBLE
-        }
-    }
-
-    private fun updateSystemUI() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-            window?.insetsController?.hide(WindowInsetsController.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE)
-        } else {
-            @Suppress("DEPRECATION")
-            window?.decorView?.systemUiVisibility = View.SYSTEM_UI_FLAG_FULLSCREEN
         }
     }
 }

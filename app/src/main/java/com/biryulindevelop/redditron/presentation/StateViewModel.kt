@@ -16,7 +16,6 @@ abstract class StateViewModel : ViewModel() {
     protected val handler = CoroutineExceptionHandler { _, e ->
         loadState.value = LoadState.Error("${e.message}")
     }
-
     protected val query = FavoritesQuery()
 
     protected val thingFlow = MutableStateFlow(Change(query))

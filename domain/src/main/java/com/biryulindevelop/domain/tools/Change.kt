@@ -4,7 +4,7 @@ class Change<T>(val value: T)
 
 data class Query(
     var listing: ListTypes = ListTypes.SUBREDDIT,
-    var source: String = "new"
+    var source: String = ""
 )
 
 data class FavoritesQuery(

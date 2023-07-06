@@ -27,7 +27,7 @@ class HomeViewModel @Inject constructor(
     private val _subredditsSourceFlow = MutableStateFlow(subredditsSource)
 
     fun setSource(position: Int) {
-        _query.source = if (position == FIRST_POSITION_INDEX) NEW else POPULAR
+        _query.source = if (position == FIRST_POSITION_INDEX) POPULAR else NEW
         _subredditsSourceFlow.value = subredditsSource
         getSubreddits()
     }

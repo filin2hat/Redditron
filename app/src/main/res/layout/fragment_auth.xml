@@ -10,7 +10,7 @@
         android:id="@+id/blue_rectangle"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:background="@color/blue"
+        android:background="@color/deep_blue"
         app:layout_constraintBottom_toTopOf="@+id/logo"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -26,7 +26,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/frog" />
 
-    <ImageView
+    <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/frog"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -44,42 +44,48 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/logo" />
 
-    <ImageView
+    <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/logo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:scaleX="1.5"
+        android:scaleY="1.5"
         android:src="@drawable/humblr"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.6" />
+        app:layout_constraintVertical_bias="0.5" />
 
-    <TextView
+    <androidx.appcompat.widget.AppCompatTextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/margin_standard"
+        android:layout_marginTop="16dp"
         android:text="@string/auth_under_logo"
         android:textAlignment="center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/logo" />
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/auth_button"
-        android:layout_width="250dp"
-        android:layout_height="57dp"
-        android:background="@drawable/round_corners_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingHorizontal="20dp"
         android:text="@string/login_via_reddit"
+        android:textSize="20sp"
+        app:backgroundTint="@color/blue"
+        app:cornerRadius="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/logo" />
 
-    <TextView
+    <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
         android:gravity="center"
         android:text="@string/successful_authorization"
         android:textSize="@dimen/standard_font_size"
@@ -95,6 +101,6 @@
         app:layout_constraintTop_toBottomOf="@+id/auth_button"
         app:lottie_autoPlay="true"
         app:lottie_loop="true"
-        app:lottie_rawRes="@raw/progressbar" />
+        app:lottie_rawRes="@raw/new_progress_bar" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -21,9 +21,9 @@
     <dimen name="standard_font_size">20sp</dimen>
     <dimen name="medium_font_size">16sp</dimen>
     <dimen name="small_font_size">14sp</dimen>
-    <dimen name="karma_font_size">12sp</dimen>
+    <dimen name="karma_font_size">15sp</dimen>
 
-    <dimen name="progressbar_speed">3</dimen>
+    <dimen name="progressbar_speed">1.5</dimen>
 
     <dimen name="item_list_elevation">3dip</dimen>
 

@@ -27,7 +27,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/header_padding"
             android:layout_marginTop="@dimen/margin_standard"
-            android:text="r/subreddit"
+            tools:text="r/subreddit"
             android:textSize="@dimen/small_font_size"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -39,7 +39,7 @@
             android:layout_marginStart="@dimen/header_padding"
             android:clickable="true"
             android:focusable="true"
-            android:text="u/username"
+            tools:text="u/username"
             android:textSize="@dimen/small_font_size"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/subreddit_name" />
@@ -69,7 +69,7 @@
             app:layout_constraintTop_toBottomOf="@id/post_title"
             app:layout_constraintVertical_bias="0">
 
-            <ImageView
+            <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/post_body_image"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -106,9 +106,9 @@
                 android:layout_gravity="center_vertical"
                 android:layout_marginHorizontal="@dimen/margin_mini"
                 android:background="@color/transparent"
-                tools:text="123К"
+                android:textColor="@color/light_blue"
                 android:textStyle="bold"
-                android:textColor="@color/deep_blue" />
+                tools:text="123К" />
 
             <androidx.appcompat.widget.AppCompatImageButton
                 android:id="@+id/down_vote_button"
@@ -125,8 +125,8 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="2dp"
             android:layout_marginTop="@dimen/margin_standard"
+            android:layout_marginBottom="2dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent">
@@ -152,7 +152,7 @@
                 android:layout_height="wrap_content"
                 android:background="@color/transparent"
                 android:text="@string/download"
-                android:textColor="@color/deep_blue"
+                android:textColor="@color/light_blue"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -179,7 +179,7 @@
             android:layout_marginBottom="@dimen/margin_mini"
             android:background="@color/white"
             android:text="@string/save"
-            android:textColor="@color/deep_blue"
+            android:textColor="@color/light_blue"
             app:layout_constraintBottom_toBottomOf="@id/save_button"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@id/save_button" />

@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name" translatable="false">Redditron</string>
+    <string name="app_name" translatable="false">Humblr</string>
     <string name="title_home">Subreddits</string>
     <string name="title_favourites">Favourites</string>
     <string name="title_profile">Profile</string>
@@ -20,7 +20,7 @@
     <string name="no">No</string>
     <string name="ok">OK</string>
     <string name="no_connection">Check the network connection</string>
-    <string name="login_via_reddit">Login</string>
+    <string name="login_via_reddit">Login via Reddit</string>
     <string name="skip">Skip</string>
     <string name="ready">Ready</string>
     <string name="successful_authorization">Successful login</string>
@@ -57,4 +57,5 @@
     <string name="friends_now">User\'s added to your friends list</string>
     <string name="snack_unsaved">All previously saved posts have been unsaved</string>
     <string name="you_have_no_saved_posts">You have no saved posts. \n Information is unavailable or deleted.</string>
+    <string name="wi_fi_img" translatable="false">wi-fi img</string>
 </resources>

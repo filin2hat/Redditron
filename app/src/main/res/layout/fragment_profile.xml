@@ -31,14 +31,14 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
-            <ImageView
-                android:id="@+id/imageView"
-                android:layout_width="95dp"
-                android:layout_height="95dp"
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/avatar_img"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
                 android:layout_marginTop="@dimen/photo_margin_top"
                 android:background="@drawable/rounded" />
 
-            <TextView
+            <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/user_name"
                 android:layout_width="230dp"
                 android:layout_height="wrap_content"
@@ -47,7 +47,7 @@
                 android:textAlignment="center"
                 android:textSize="@dimen/standard_font_size" />
 
-            <TextView
+            <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/user_id"
                 android:layout_width="150dp"
                 android:layout_height="wrap_content"
@@ -57,7 +57,7 @@
                 android:textAlignment="center"
                 android:textSize="@dimen/medium_font_size" />
 
-            <TextView
+            <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/karma"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -66,7 +66,7 @@
                 android:textAlignment="center"
                 android:textSize="@dimen/karma_font_size" />
 
-            <TextView
+            <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/followers"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

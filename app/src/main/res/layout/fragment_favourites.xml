@@ -61,7 +61,7 @@
         app:layout_constraintTop_toBottomOf="@id/toggle_source"
         tools:listitem="@layout/item_subreddit" />
 
-    <TextView
+    <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/no_saved_posts"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

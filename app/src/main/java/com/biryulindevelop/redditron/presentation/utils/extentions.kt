@@ -9,6 +9,7 @@ import com.google.android.material.tabs.TabLayout
 fun ImageView.loadImage(urls: String) {
     Glide.with(this)
         .load(urls)
+        .circleCrop()
         .error(R.drawable.ic_launcher_foreground)
         .diskCacheStrategy(DiskCacheStrategy.ALL)
         .placeholder(R.drawable.placeholder)
@@ -34,22 +35,7 @@ fun TabLayout.setSelectedTabListener(block: (position: Int) -> Unit) {
         }
 
         override fun onTabUnselected(tab: TabLayout.Tab?) {}
+
         override fun onTabReselected(tab: TabLayout.Tab?) {}
     })
 }
-
-//TODO: move here from home fragment:
-//fun SearchView.setChangeTextListener(block: (query: String) -> Unit) {
-//
-//    this.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
-//
-//        override fun onQueryTextChange(newText: String): Boolean {
-//            block(newText)
-//            return false
-//        }
-//
-//        override fun onQueryTextSubmit(query: String): Boolean {
-//            return false
-//        }
-//    })
-//}

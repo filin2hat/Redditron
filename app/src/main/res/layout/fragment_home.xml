@@ -22,20 +22,21 @@
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/toggle_source"
         style="@style/MyTabLayoutStyle"
-        android:layout_marginTop="@dimen/margin_standard"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/search_view">
 
         <com.google.android.material.tabs.TabItem
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/newest" />
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="@string/popular" />
 
         <com.google.android.material.tabs.TabItem
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/popular" />
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="@string/newest" />
 
     </com.google.android.material.tabs.TabLayout>
 
@@ -43,7 +44,6 @@
         android:id="@+id/recycler_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/margin_standard"
         android:layout_marginBottom="@dimen/home_screen_margin_bottom"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constrainedHeight="true"

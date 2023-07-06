@@ -79,7 +79,7 @@ class UserFragment : Fragment(R.layout.fragment_user) {
     }
 
     private fun loadAvatar(url: String) {
-        binding.imageView.loadImage(url)
+        binding.avatarImg.loadImage(url)
     }
 
     private fun loadProfileTexts(data: Profile) {

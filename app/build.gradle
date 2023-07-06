@@ -29,9 +29,22 @@ android {
 
     buildTypes {
         release {
-            minifyEnabled false
+            minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'),
                     'proguard-rules.pro'
+            debuggable false
+            jniDebuggable false
+            renderscriptDebuggable false
+            renderscriptOptimLevel 3
+            signingConfig signingConfigs.debug
+        }
+        debug {
+            debuggable true
+            jniDebuggable true
+            renderscriptDebuggable false
+            renderscriptOptimLevel 3
+            minifyEnabled false
+            signingConfig signingConfigs.debug
         }
     }
     compileOptions {
