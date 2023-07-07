@@ -26,8 +26,7 @@ with posts from various subreddits.
 
 ### Important:
 
-#### For the application to work, you must:
-For the application to work, you must:
+ For the application to work, you must:
 - register an account on Reddit
 - create an application on the site (https://www.reddit.com/prefs/apps)
 - register the received keys in local.properties: CLIENT_ID = your-client-id
@@ -65,7 +64,7 @@ Humblr - это мобильное приложение, которое позв
 
 ### Важно:
 
-#### Для работы приложения вам необходимо:
+Для работы приложения вам необходимо:
 - зарегистрировать аккаунт на Reddit
 - создать приложение на сайте (https://www.reddit.com/prefs/apps)
 - зарегистрировать полученные ключи в local.properties: CLIENT_ID = ваш-client-id
