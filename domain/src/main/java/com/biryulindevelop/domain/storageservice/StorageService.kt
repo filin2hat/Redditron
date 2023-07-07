@@ -7,4 +7,5 @@ interface StorageService {
     fun save(key: String, data: Any?)
 
     fun load(key: String): Boolean
+
 }
