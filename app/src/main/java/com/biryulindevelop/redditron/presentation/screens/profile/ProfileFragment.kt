@@ -16,7 +16,6 @@ import com.biryulindevelop.domain.state.LoadState
 import com.biryulindevelop.redditron.R
 import com.biryulindevelop.redditron.databinding.FragmentProfileBinding
 import com.biryulindevelop.redditron.presentation.utils.loadCircleImage
-import com.biryulindevelop.redditron.presentation.utils.loadImage
 import com.google.android.material.snackbar.BaseTransientBottomBar
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
@@ -71,13 +70,13 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
             common.error.isVisible = state is LoadState.Error
             if (state is LoadState.Content) {
                 val data = state.data as Profile
-                loadProfileTexts(data)
+                setupUI(data)
                 data.urlAvatar?.let { loadAvatar(it) }
             }
         }
     }
 
-    private fun loadProfileTexts(data: Profile) {
+    private fun setupUI(data: Profile) {
         with(binding) {
             userName.text = data.name
             userId.text = getString(R.string.user_id, data.id)

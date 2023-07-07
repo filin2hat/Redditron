@@ -1,10 +1,8 @@
 package com.biryulindevelop.redditron.presentation.screens.authorization
 
-import android.content.ContentValues.TAG
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
@@ -18,6 +16,7 @@ import com.biryulindevelop.domain.state.LoadState
 import com.biryulindevelop.redditron.R
 import com.biryulindevelop.redditron.databinding.FragmentAuthBinding
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 /** binding is based on library "ViewBindingPropertyDelegate", by Kirill Rozov aka kirich1409
@@ -50,33 +49,34 @@ class AuthFragment : Fragment(R.layout.fragment_auth) {
                 when (state) {
                     LoadState.NotStartedYet -> setViewsStates(
                         buttonIsEnabled = true,
-                        textIsVisible = false,
-                        progressIsVisible = false
+                        textIsVisible = false
                     )
 
-                    LoadState.Loading -> setViewsStates(
-                        buttonIsEnabled = false,
-                        textIsVisible = false,
-                        progressIsVisible = true
-                    )
-
-                    is LoadState.Content -> {
+                    LoadState.Loading -> {
+                        binding.authButton.isVisible = false
                         setViewsStates(
                             buttonIsEnabled = false,
-                            textIsVisible = true,
-                            progressIsVisible = false
+                            textIsVisible = false
                         )
+                    }
+
+                    is LoadState.Content -> {
+                        binding.authButton.isVisible = false
+                        setViewsStates(
+                            buttonIsEnabled = false,
+                            textIsVisible = false
+                        )
+                        binding.loadingDone.isVisible = true
+                        delay(3000)
                         findNavController().navigate(R.id.action_navigation_auth_to_navigation_home)
                     }
 
                     is LoadState.Error -> {
                         setViewsStates(
                             buttonIsEnabled = true,
-                            textIsVisible = true,
-                            progressIsVisible = false
+                            textIsVisible = true
                         )
                         binding.text.text = state.message
-                        Log.e(TAG, "loading error: ${state.message}")
                     }
                 }
             }
@@ -85,13 +85,11 @@ class AuthFragment : Fragment(R.layout.fragment_auth) {
 
     private fun setViewsStates(
         buttonIsEnabled: Boolean,
-        textIsVisible: Boolean,
-        progressIsVisible: Boolean
+        textIsVisible: Boolean
     ) {
         with(binding) {
             authButton.isEnabled = buttonIsEnabled
             text.isVisible = textIsVisible
-            progressBar.isVisible = progressIsVisible
         }
     }
 }

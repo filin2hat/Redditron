@@ -19,7 +19,7 @@
     <string name="yes">Yes</string>
     <string name="no">No</string>
     <string name="ok">OK</string>
-    <string name="no_connection">Check the network connection</string>
+    <string name="no_connection">Data loading error</string>
     <string name="login_via_reddit">Login via Reddit</string>
     <string name="skip">Skip</string>
     <string name="ready">Ready</string>

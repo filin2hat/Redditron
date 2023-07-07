@@ -70,7 +70,7 @@
     <com.google.android.material.button.MaterialButton
         android:id="@+id/auth_button"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="70dp"
         android:paddingHorizontal="20dp"
         android:text="@string/login_via_reddit"
         android:textSize="20sp"
@@ -94,13 +94,16 @@
         app:layout_constraintTop_toBottomOf="@id/auth_button" />
 
     <com.airbnb.lottie.LottieAnimationView
-        android:id="@+id/progress_bar"
+        android:id="@+id/loading_done"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/auth_button"
+        app:layout_constraintVertical_bias="0.63"
         app:lottie_autoPlay="true"
         app:lottie_loop="true"
-        app:lottie_rawRes="@raw/new_progress_bar" />
+        app:lottie_rawRes="@raw/login_reddit_anim"
+        tools:layout_editor_absoluteX="0dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

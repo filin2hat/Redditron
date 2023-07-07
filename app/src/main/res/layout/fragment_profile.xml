@@ -18,11 +18,11 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <LinearLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/user_data_frame"
             android:layout_width="300dp"
-            android:layout_height="244dp"
-            android:layout_marginTop="@dimen/user_margin_top"
+            android:layout_height="350dp"
+            android:layout_marginTop="50dp"
             android:background="@drawable/layout_bg"
             android:elevation="@android:dimen/app_icon_size"
             android:gravity="center"
@@ -33,38 +33,54 @@
 
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/avatar_img"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:layout_marginTop="@dimen/photo_margin_top"
-                android:background="@drawable/rounded" />
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/rounded"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/user_name"
                 android:layout_width="230dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/user_name_margin_top"
                 android:background="@drawable/round_corners_20alfa_btn"
                 android:textAlignment="center"
-                android:textSize="@dimen/standard_font_size" />
+                android:textSize="@dimen/standard_font_size"
+                app:layout_constraintBottom_toTopOf="@id/user_id"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/avatar_img"
+                tools:text="User Name" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/user_id"
                 android:layout_width="150dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/profile_margin_top"
                 android:background="@drawable/round_corners_20alfa_btn"
                 android:text="@string/user_id"
                 android:textAlignment="center"
-                android:textSize="@dimen/medium_font_size" />
+                android:textSize="@dimen/medium_font_size"
+                app:layout_constraintBottom_toTopOf="@id/karma"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/user_name" />
+
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/karma"
-                android:layout_width="match_parent"
+                android:layout_width="150dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/profile_margin_top"
                 android:text="@string/karma"
                 android:textAlignment="center"
-                android:textSize="@dimen/karma_font_size" />
+                android:textColor="@color/grey"
+                android:textSize="@dimen/karma_font_size"
+                app:layout_constraintBottom_toTopOf="@id/followers"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/user_id" />
+
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/followers"
@@ -72,11 +88,16 @@
                 android:layout_height="wrap_content"
                 android:text="@string/followers"
                 android:textAlignment="center"
-                android:textSize="@dimen/karma_font_size" />
+                android:textColor="@color/grey"
+                android:textSize="@dimen/karma_font_size"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/karma" />
 
-        </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/button_list_of_friends"
             android:layout_width="300dp"
             android:layout_height="38dp"
@@ -89,7 +110,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/user_data_frame" />
 
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/button_clear_saved"
             android:layout_width="300dp"
             android:layout_height="38dp"
@@ -101,7 +122,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/button_list_of_friends" />
 
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/button_logout"
             android:layout_width="300dp"
             android:layout_height="38dp"

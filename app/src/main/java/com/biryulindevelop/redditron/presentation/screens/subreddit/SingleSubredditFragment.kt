@@ -99,7 +99,7 @@ class SingleSubredditFragment : Fragment(R.layout.fragment_single_subreddit) {
 
     private fun loadSubredditDescription(subreddit: Subreddit) {
         with(binding) {
-            subredditName.text = subreddit.namePrefixed
+            subredditName.text = subreddit.namePrefixed.removePrefix("r/")
             subscribers.text = getString(R.string.subscribers, subreddit.subscribers ?: 0)
             subredditDescription.text = subreddit.description
         }
