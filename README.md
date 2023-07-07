@@ -72,5 +72,6 @@ Humblr - это мобильное приложение, которое позв
 #### Скачал - поставь 🌟
 
 ## Demo:
+![demo_project_humblr](https://github.com/filin2hat/Redditron/assets/94535311/5d0a2d7b-686d-4a7b-bb22-40110634d9d9)
 
 
