@@ -9,7 +9,6 @@ import com.google.android.material.tabs.TabLayout
 fun ImageView.loadImage(urls: String) {
     Glide.with(this)
         .load(urls)
-        .circleCrop()
         .error(R.drawable.ic_launcher_foreground)
         .diskCacheStrategy(DiskCacheStrategy.ALL)
         .placeholder(R.drawable.placeholder)

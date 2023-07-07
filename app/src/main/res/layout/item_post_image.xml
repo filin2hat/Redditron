@@ -13,6 +13,7 @@
     app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintStart_toStartOf="parent"
     app:layout_constraintTop_toTopOf="parent"
+    android:backgroundTint="@color/white"
     app:strokeColor="@color/grey"
     app:strokeWidth="@dimen/card_stroke_width">
 
@@ -29,11 +30,13 @@
             android:layout_marginTop="@dimen/margin_standard"
             tools:text="r/subreddit"
             android:textSize="@dimen/small_font_size"
+            android:textColor="@color/dark_grey"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/user_name"
+            android:textColor="@color/dark_grey"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/header_padding"

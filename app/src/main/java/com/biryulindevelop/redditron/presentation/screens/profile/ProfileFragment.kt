@@ -15,6 +15,7 @@ import com.biryulindevelop.domain.models.Profile
 import com.biryulindevelop.domain.state.LoadState
 import com.biryulindevelop.redditron.R
 import com.biryulindevelop.redditron.databinding.FragmentProfileBinding
+import com.biryulindevelop.redditron.presentation.utils.loadCircleImage
 import com.biryulindevelop.redditron.presentation.utils.loadImage
 import com.google.android.material.snackbar.BaseTransientBottomBar
 import com.google.android.material.snackbar.Snackbar
@@ -86,7 +87,7 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
     }
 
     private fun loadAvatar(url: String) {
-        binding.avatarImg.loadImage(viewModel.getClearedUrlAvatar(url))
+        binding.avatarImg.loadCircleImage(viewModel.getClearedUrlAvatar(url))
     }
 
     private fun showLogoutConfirmationDialog() {

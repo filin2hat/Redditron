@@ -9,6 +9,7 @@
     android:layout_marginTop="@dimen/margin_mini"
     app:cardCornerRadius="@dimen/card_corner_radius"
     app:cardElevation="6dp"
+    android:backgroundTint="@color/grey"
     app:cardPreventCornerOverlap="true"
     app:strokeColor="@color/grey"
     app:strokeWidth="@dimen/card_stroke_width">
