@@ -64,7 +64,7 @@ class FavouritesFragment : Fragment(R.layout.fragment_favourites) {
                 adapter.loadStateFlow.collect { state ->
                     with(binding) {
                         common.progressBar.isVisible =
-                            state.refresh is LoadState.Loading || state.append is LoadState.Loading
+                            state.refresh is LoadState.Loading
                         common.error.isVisible =
                             state.refresh is LoadState.Error || state.append is LoadState.Error || state.prepend is LoadState.Error
                         noSavedPosts.isVisible =

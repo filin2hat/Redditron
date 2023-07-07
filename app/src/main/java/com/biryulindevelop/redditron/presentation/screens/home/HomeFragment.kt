@@ -54,7 +54,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
                 adapter.loadStateFlow.collect { state ->
                     with(binding) {
                         common.progressBar.isVisible =
-                            state.refresh is androidx.paging.LoadState.Loading || state.append is androidx.paging.LoadState.Loading
+                            state.refresh is androidx.paging.LoadState.Loading
                         common.error.isVisible =
                             state.refresh is androidx.paging.LoadState.Error || state.append is androidx.paging.LoadState.Error || state.prepend is androidx.paging.LoadState.Error
                     }
