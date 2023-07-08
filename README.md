@@ -1,5 +1,15 @@
 # Humblr
 
+### Important:
+
+For the application to work, you must:
+
+- register an account on Reddit
+- create an application on the site (https://www.reddit.com/prefs/apps)
+- register the received keys in local.properties: CLIENT_ID = your-client-id
+
+#### Downloaded - press 🌟
+
 ## General Project Description:
 
 Humblr is a mobile application that allows users to browse and interact with content from Reddit.
@@ -24,18 +34,17 @@ with posts from various subreddits.
   reliability
   and quality of the app.
 
-### Important:
-
- For the application to work, you must:
-- register an account on Reddit
-- create an application on the site (https://www.reddit.com/prefs/apps)
-- register the received keys in local.properties: CLIENT_ID = your-client-id
-
-#### Downloaded - press 🌟
-
-
-
 ### Russian / Русский:
+
+### Важно:
+
+Для работы приложения вам необходимо:
+
+- зарегистрировать аккаунт на Reddit
+- создать приложение на сайте (https://www.reddit.com/prefs/apps)
+- зарегистрировать полученные ключи в local.properties: CLIENT_ID = ваш-client-id
+
+#### Скачал - поставь 🌟
 
 ## Общее описание проекта:
 
@@ -62,16 +71,8 @@ Humblr - это мобильное приложение, которое позв
 - Тестирование: JUnit и Espresso используются для модульного и UI-тестирования соответственно,
   обеспечивая надежность и качество приложения.
 
-### Важно:
-
-Для работы приложения вам необходимо:
-- зарегистрировать аккаунт на Reddit
-- создать приложение на сайте (https://www.reddit.com/prefs/apps)
-- зарегистрировать полученные ключи в local.properties: CLIENT_ID = ваш-client-id
-
-#### Скачал - поставь 🌟
-
 ## Demo:
+
 ![demo_project_humblr](https://github.com/filin2hat/Redditron/assets/94535311/5d0a2d7b-686d-4a7b-bb22-40110634d9d9)
 
 
